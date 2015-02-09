@@ -1,9 +1,31 @@
-/bootstrap/compiled.php
-/vendor
+
+# Symfony directories
+vendor/*
+*/logs/*
+*/cache/*
+web/uploads/*
+web/bundles/*
+
+# Symfony files
+phpunit.xml
+composer.lock
+composer.phar
+autoload.php
+/vendor/
+
+# Configuration files
+app/config/parameters.ini
+app/config/parameters.yml
+
+# Composer
 composer.phar
 composer.lock
 .env.*.php
 .env.php
+
+# Apple
 .DS_Store
 Thumbs.db
+
+# Temporary
 readme.md

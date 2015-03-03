@@ -1,3 +1,3 @@
 # Contribution Guidelines
 
-todo
+Quantifier depends on Bower and Composer.

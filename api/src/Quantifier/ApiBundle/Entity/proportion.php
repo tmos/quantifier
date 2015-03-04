@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * proportion
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\proportionRepository")
+ * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\ProportionRepository")
  */
-class proportion
+class Proportion
 {
     /**
      * @var integer
@@ -32,7 +32,7 @@ class proportion
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -55,7 +55,7 @@ class proportion
     /**
      * Get creator
      *
-     * @return integer 
+     * @return integer
      */
     public function getCreator()
     {

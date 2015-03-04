@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\dataRepository")
  */
-class data
+class Data
 {
     /**
      * @var integer
@@ -35,11 +35,17 @@ class data
      */
     private $comment;
 
+    /**
+    *  @ORM\ManyToOne(targetEntity="Quantifier\ApiBundle\Entity\Track", inversedBy="data")
+    *  @ORM\JoinColumn(nullable=true)
+    */
+    private $track;
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -62,7 +68,7 @@ class data
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -85,10 +91,23 @@ class data
     /**
      * Get comment
      *
-     * @return string 
+     * @return string
      */
     public function getComment()
     {
         return $this->comment;
+    }
+
+    /**
+     * Set track
+     *
+     * @param Track $track
+     * @return Data
+     */
+    public function setName($track)
+    {
+        $this->track = $track;
+
+        return $this;
     }
 }

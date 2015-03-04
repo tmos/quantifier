@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * binaries
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\binariesRepository")
+ * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\BinariesRepository")
  */
-class binaries
+class Binaries
 {
     /**
      * @var integer
@@ -32,7 +32,7 @@ class binaries
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -55,7 +55,7 @@ class binaries
     /**
      * Get value
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getValue()
     {

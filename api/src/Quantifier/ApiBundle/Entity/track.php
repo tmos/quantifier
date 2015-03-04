@@ -2,15 +2,16 @@
 
 namespace Quantifier\ApiBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * track
+ * Track
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\trackRepository")
+ * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\TrackRepository")
  */
-class track
+class Track
 {
     /**
      * @var integer
@@ -49,11 +50,24 @@ class track
      */
     private $type;
 
+    /**
+    *  @ORM\OneToMany(targetEntity="Quantifier\ApiBundle\Entity\Data", mappedBy="track")
+    */
+    private $data;
+
+    /**
+    *  Initialize data
+    */
+    public function __construct()
+    {
+        $this->data = new ArrayCollection();
+    }
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -64,7 +78,7 @@ class track
      * Set name
      *
      * @param string $name
-     * @return track
+     * @return Track
      */
     public function setName($name)
     {
@@ -76,7 +90,7 @@ class track
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -87,7 +101,7 @@ class track
      * Set creator
      *
      * @param integer $creator
-     * @return track
+     * @return Track
      */
     public function setCreator($creator)
     {
@@ -99,7 +113,7 @@ class track
     /**
      * Get creator
      *
-     * @return integer 
+     * @return integer
      */
     public function getCreator()
     {
@@ -110,7 +124,7 @@ class track
      * Set date
      *
      * @param \DateTime $date
-     * @return track
+     * @return Track
      */
     public function setDate($date)
     {
@@ -122,7 +136,7 @@ class track
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -133,7 +147,7 @@ class track
      * Set type
      *
      * @param integer $type
-     * @return track
+     * @return Track
      */
     public function setType($type)
     {
@@ -145,10 +159,45 @@ class track
     /**
      * Get type
      *
-     * @return integer 
+     * @return integer
      */
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+    *  Add data
+    *
+    *  @param Data $data
+    *  @return Track
+    */
+    public function addData(Data $data)
+    {
+        $this->data[] = $data;
+
+        $data->setTrack($this);
+
+        return $this;
+    }
+
+    /**
+    *  Remove data
+    *
+    *  @param Data $data
+    */
+    public function removeData(Data $data)
+    {
+        $this->data->removeElements($data);
+    }
+
+    /**
+    * Get All data
+    *
+    * @return Data[]
+    */
+    public function getAllData()
+    {
+        return $this->data;
     }
 }

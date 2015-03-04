@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * evolution
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\evolutionRepository")
+ * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\EvolutionRepository")
  */
-class evolution
+class Evolution
 {
     /**
      * @var integer
@@ -32,7 +32,7 @@ class evolution
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -55,7 +55,7 @@ class evolution
     /**
      * Get value
      *
-     * @return string 
+     * @return string
      */
     public function getValue()
     {

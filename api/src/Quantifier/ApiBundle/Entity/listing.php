@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * listing
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\listingRepository")
+ * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\ListingRepository")
  */
-class listing
+class Listing
 {
     /**
      * @var integer

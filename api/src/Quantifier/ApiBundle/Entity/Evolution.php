@@ -28,6 +28,12 @@ class Evolution
      */
     private $value;
 
+    /**
+    *  @ORM\ManyToOne(targetEntity="Quantifier\ApiBundle\Entity\Proportion", inversedBy="evolutions")
+    *  @ORM\JoinColumn(nullable=true)
+    */
+    private $proportion;
+
 
     /**
      * Get id
@@ -60,5 +66,18 @@ class Evolution
     public function getValue()
     {
         return $this->value;
+    }
+
+    /**
+     * Set proportion
+     *
+     * @param Proporiton $proportion
+     * @return Evolution
+     */
+    public function setProportion($proportion)
+    {
+        $this->proportion = $proportion;
+
+        return $this;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Quantifier\ApiBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +29,19 @@ class Proportion
      */
     private $creator;
 
+    /**
+    *  @ORM\OneToMany(targetEntity="Quantifier\ApiBundle\Entity\Data", mappedBy="proportion")
+    */
+    private $evolutions;
+
+
+    /**
+    *  Initialize evolutions
+    */
+    public function __construct()
+    {
+        $this->evolutions = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -60,5 +74,40 @@ class Proportion
     public function getCreator()
     {
         return $this->creator;
+    }
+
+    /**
+    *  Add evolution
+    *
+    *  @param Evolution $evolution
+    *  @return Track
+    */
+    public function addEvolutions(Evolution $evolution)
+    {
+        $this->evolutions[] = $evolution;
+
+        $evolution->setProportion($this);
+
+        return $this;
+    }
+
+    /**
+    *  Remove evolution
+    *
+    *  @param Evolution $evolution
+    */
+    public function removeEvolution(Evolution $evolution)
+    {
+        $this->evolutions->removeElements($evolution);
+    }
+
+    /**
+    * Get evolutions
+    *
+    * @return Evolutions[]
+    */
+    public function getAllEvolution()
+    {
+        return $this->evolutions;
     }
 }

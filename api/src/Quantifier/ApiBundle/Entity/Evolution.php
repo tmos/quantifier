@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\EvolutionRepository")
  */
-class Evolution
+class Evolution extends Data
 {
     /**
      * @var integer

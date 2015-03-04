@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\dataRepository")
  */
-class Data
+abstract class Data
 {
     /**
      * @var integer

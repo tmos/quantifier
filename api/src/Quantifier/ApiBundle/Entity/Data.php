@@ -36,7 +36,7 @@ class Data
     private $comment;
 
     /**
-    *  @ORM\ManyToOne(targetEntity="Quantifier\ApiBundle\Entity\Track", inversedBy="data")
+    *  @ORM\ManyToOne(targetEntity="Quantifier\ApiBundle\Entity\Track", inversedBy="datas")
     *  @ORM\JoinColumn(nullable=true)
     */
     private $track;
@@ -104,7 +104,7 @@ class Data
      * @param Track $track
      * @return Data
      */
-    public function setName($track)
+    public function setTrack($track)
     {
         $this->track = $track;
 

@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Track
+ * track
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\TrackRepository")
@@ -53,14 +53,14 @@ class Track
     /**
     *  @ORM\OneToMany(targetEntity="Quantifier\ApiBundle\Entity\Data", mappedBy="track")
     */
-    private $data;
+    private $datas;
 
     /**
     *  Initialize data
     */
     public function __construct()
     {
-        $this->data = new ArrayCollection();
+        $this->datas = new ArrayCollection();
     }
 
 
@@ -174,7 +174,7 @@ class Track
     */
     public function addData(Data $data)
     {
-        $this->data[] = $data;
+        $this->datas[] = $data;
 
         $data->setTrack($this);
 
@@ -188,7 +188,7 @@ class Track
     */
     public function removeData(Data $data)
     {
-        $this->data->removeElements($data);
+        $this->datas->removeElements($data);
     }
 
     /**
@@ -198,6 +198,6 @@ class Track
     */
     public function getAllData()
     {
-        return $this->data;
+        return $this->datas;
     }
 }

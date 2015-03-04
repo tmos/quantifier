@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  	<meta charset="utf-8">
+  	<link rel="stylesheet" href="bower_compenents/knacss/css/knacss.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<title>Quantifier</title>
+</head>
+<body>
+
+	<script type='text/x-handlebars' data-template-name='application'>
+		<header>
+			<h1>Quantifier</h1>
+			<nav>
+				<ul>
+					<li>{{#link-to 'tracks'}}Suivis{{/link-to}}</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<h2>Welcome {{userName}} !</h2>
+			{{outlet}}
+		</main>
+		<footer>
+			© Quantifier
+		</footer>
+	</script>
+
+	<script type='text/x-handlebars' data-template-name='index'>
+		indexx
+	</script>
+
+	<script type='text/x-handlebars' data-template-name='tracks'>
+		les suivisssss
+	</script>
+	<script type='text/x-handlebars' data-template-name='track'>
+		
+	</script>
+	
+
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/ember/ember.debug.js"></script>
+	<script src="bower_components/ember/ember-template-compiler.js"></script>
+	<script src="bower_components/ember-data/ember-data.js"></script>
+	<script src="js/application.js"></script>
+</body>
+</html>

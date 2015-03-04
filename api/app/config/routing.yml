@@ -1,0 +1,5 @@
+qf_api:
+    resource: "@QFApiBundle/Resources/config/routing.yml"
+    prefix:   /
+
+

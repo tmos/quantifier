@@ -1,47 +1,68 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  	<meta charset="utf-8">
-  	<link rel="stylesheet" href="bower_compenents/knacss/css/knacss.css">
-	<link rel="stylesheet" href="css/styles.css">
-	<title>Quantifier</title>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="bower_compenents/knacss/css/knacss.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Quantifier</title>
 </head>
 <body>
 
-	<script type='text/x-handlebars' data-template-name='application'>
-		<header>
-			<h1>Quantifier</h1>
-			<nav>
-				<ul>
-					<li>{{#link-to 'tracks'}}Suivis{{/link-to}}</li>
-				</ul>
-			</nav>
-		</header>
-		<main>
-			<h2>Welcome {{userName}} !</h2>
-			{{outlet}}
-		</main>
-		<footer>
-			© Quantifier
-		</footer>
-	</script>
+    <script type='text/x-handlebars' data-template-name='application'>
+        <header>
+            <h1>{{#link-to 'index'}}Quantifier{{/link-to}}</h1>
+            <nav>
+                <ul>
+                    <li>{{#link-to 'tracks'}}Suivis{{/link-to}}</li>
+                </ul>
+            </nav>
+        </header>
 
-	<script type='text/x-handlebars' data-template-name='index'>
-		indexx
-	</script>
+        <main>
+            {{outlet}}
+        </main>
 
-	<script type='text/x-handlebars' data-template-name='tracks'>
-		les suivisssss
-	</script>
-	<script type='text/x-handlebars' data-template-name='track'>
-		
-	</script>
-	
+        <footer>
+            © Quantifier
+        </footer>
+    </script>
 
-	<script src="bower_components/jquery/dist/jquery.js"></script>
-	<script src="bower_components/ember/ember.debug.js"></script>
-	<script src="bower_components/ember/ember-template-compiler.js"></script>
-	<script src="bower_components/ember-data/ember-data.js"></script>
-	<script src="js/application.js"></script>
+    <script type='text/x-handlebars' data-template-name='index'>
+        <h2>Index</h2>
+        
+        <form action="api/index.php/connection" method="POST">
+            <label for="pseudo" class="hidden">Pseudo</label>
+            <input type="text" id="pseudo" placeholder="pseudo">
+            <label for="password" class="hidden">Password</label>
+            <input type="password" id="password">
+            <input type="submit" value="connect">
+        </form>
+    </script>
+
+    <script type='text/x-handlebars' data-template-name='tracks'>
+        <h2>tracks</h2>
+        
+        {{#each track in model}}
+            <article>
+                <time>{{track.creationDate}}</time>
+                <h3>{{track.title}}</h3>
+                {{#each value in track.values}}
+                    {{value}},
+                {{/each}}
+                <canvas {{bind-attr id='track.id'}}></canvas>
+            </article>
+        {{/each}}
+    </script>
+    
+    <script type='text/x-handlebars' data-template-name='track'>
+        
+    </script>
+    
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/ember/ember.debug.js"></script>
+    <script src="bower_components/ember/ember-template-compiler.js"></script>
+    <script src="bower_components/ember-data/ember-data.js"></script>
+    <script src="js/application.js"></script>
 </body>
 </html>

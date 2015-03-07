@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-      <meta charset="utf-8">
-      <link rel="stylesheet" href="bower_compenents/knacss/css/knacss.css">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="bower_components/knacss/css/knacss.css">
     <link rel="stylesheet" href="css/styles.css">
     <title>Quantifier</title>
 </head>
 <body>
 
     <script type='text/x-handlebars' data-template-name='application'>
-        <header>
-            <h1>{{#link-to 'index'}}Quantifier{{/link-to}}</h1>
-            <nav>
-                <ul>
-                    <li>{{#link-to 'tracks'}}Suivis{{/link-to}}</li>
+        <header class="Header">
+            <nav class="Menu">
+                <h1 class="Menu-AppTitle AppTitle">{{#link-to 'index'}}{{pageName}}{{/link-to}}</h1>
+                <ul class="Menu-ul">
+                    <li class="MenuItem">{{#link-to 'tracks'}}Suivis{{/link-to}}</li>
+                    <li class="MenuItem">Proportions</li>
                 </ul>
             </nav>
         </header>
 
-        <main>
+        <main class="Main">
             {{outlet}}
         </main>
 
@@ -28,8 +29,6 @@
     </script>
 
     <script type='text/x-handlebars' data-template-name='index'>
-        <h2>Index</h2>
-        
         <form action="api/index.php/connection" method="POST">
             <label for="pseudo" class="hidden">Pseudo</label>
             <input type="text" id="pseudo" placeholder="pseudo">
@@ -40,20 +39,19 @@
     </script>
 
     <script type='text/x-handlebars' data-template-name='tracks'>
-        <h2>tracks</h2>
-        
+        <div class="autogrid3">
         {{#each track in model}}
-            <article>
-                <time>{{track.creationDate}}</time>
-                <h3>{{track.title}}</h3>
-                {{#each value in track.values}}
-                    {{value}},
-                {{/each}}
+            <article class="Card">
+                <h3 class="CardTitle">{{track.title}}</h3>
+                <!--<time {{bind-attr datetime='track.creationDate'}}>{{track.creationDate}}</time>-->
                 <canvas {{bind-attr id='track.id'}}></canvas>
+                <button class="Btn add">Add</button>
             </article>
         {{/each}}
+        </div>
+        
     </script>
-    
+
     <script type='text/x-handlebars' data-template-name='track'>
         
     </script>
@@ -64,5 +62,6 @@
     <script src="bower_components/ember/ember-template-compiler.js"></script>
     <script src="bower_components/ember-data/ember-data.js"></script>
     <script src="js/application.js"></script>
+    <script src="js/chrome.js"></script>
 </body>
 </html>

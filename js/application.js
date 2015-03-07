@@ -10,8 +10,18 @@ App.Router.map(function() {
 });
 
 /** Controllers */
-App.IndexController = Ember.Controller.extend({
+App.ApplicationController = Ember.Controller.extend({
+    pageName : "Quantifier",
     userName : "tmos"
+});
+
+App.IndexController = Ember.Controller.extend({
+    pageName : "Accueil",
+    userName : "tmos"
+});
+App.TracksController = Ember.Controller.extend({
+    pageName : "Tracks"
+    // Create a function that return a set-up canvas with chart.JS
 });
 
 /** Routes */
@@ -41,5 +51,40 @@ App.TRACKS = [
             93,
             45
         ]
+    }, {
+        id:2,
+        title:"km runs",
+        creationDate:"26/04/2014",
+        type:1,
+        values:
+        [
+            12.5,
+            24.3,
+            42,
+            8,
+            23
+        ]
+    }, {
+        id:3,
+        title:"Beverages",
+        creationDate:"26/10/1992",
+        type:2,
+        values:
+        {
+            "Biere": 28,
+            "Vin": 1,
+            "Eau": 234
+        }
+    }, {
+        id:4,
+        title:"Beverages",
+        creationDate:"26/10/1992",
+        type:2,
+        values:
+        {
+            "Biere": 28,
+            "Vin": 1,
+            "Eau": 234
+        }
     }
 ];

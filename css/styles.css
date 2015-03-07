@@ -1,3 +1,86 @@
 .hidden {
-	display: none;
+    display: none;
+}
+
+/** Colors */
+body {
+    background-color: #fff;
+    color:#EEE;
+}
+a {
+    color: #4A92CC;
+    text-decoration: none;
+}
+/** Layout */
+
+/** Elements */
+.Header {
+    
+}
+    .Menu > * {
+        line-height: 64px;
+    }
+    .Menu {
+        background-color: #4A92CC;
+        height: 64px;
+    }
+    .Menu a {
+        color:#FFF;
+    }
+    .Menu-AppTitle {
+        float: left;
+        padding-left: 1rem;
+    }
+    .Menu-ul {
+        margin-top: 0;
+        list-style: none;
+        display: table;
+        float: right;
+    }
+    .MenuItem {
+        float: left;
+        padding: 0 1rem;
+    }
+    .MenuItem a {
+        display: block;
+    }
+    .MenuItem:hover,
+    .MenuItem:active,
+    .MenuItem:focus {
+        background-color: rgba(255,255,255,.3);
+    }
+
+.Main {
+    margin: 0 2rem;
+    clear: both;
+}
+.Card {
+    padding: 0;
+    margin-top: 2rem;
+    border-radius: 2px;
+    background-color: #efefef;
+    color:#222;
+    overflow: hidden;
+}
+    .CardTitle {
+        padding: 1rem;
+        text-transform: capitalize;
+    }
+
+/** UI */
+.Btn {
+    font-size: 2rem;
+    font-weight: bold;
+    border: 0 none;
+}
+.Btn:hover,
+.Btn:active,
+.Btn:focus {
+    background: #EF2D00;
+}
+.add {
+    width: 100%;
+    background: #FF3709;
+    color:#FFF;
+    padding: 1rem;
 }

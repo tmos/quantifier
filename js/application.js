@@ -11,24 +11,27 @@ App.Router.map(function() {
 
 /** Controllers */
 App.ApplicationController = Ember.Controller.extend({
-    pageName : "Quantifier",
     userName : "tmos"
 });
 
 App.IndexController = Ember.Controller.extend({
-    pageName : "Accueil",
-    userName : "tmos"
+    
 });
 App.TracksController = Ember.Controller.extend({
-    pageName : "Tracks"
-    // Create a function that return a set-up canvas with chart.JS
+
 });
+
 
 /** Routes */
 App.TracksRoute = Ember.Route.extend({
-  model: function() {
-    return App.TRACKS;
-  }
+    model: function() {
+        return App.TRACKS;
+    }
+});
+App.TrackRoute = Ember.Route.extend({
+    model: function(params) {
+        return App.TRACKS.findBy('id', params.id); 
+    }
 });
 
 App.TRACKS = [

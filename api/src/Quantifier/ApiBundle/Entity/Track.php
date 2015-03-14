@@ -6,9 +6,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * track
+ * Track
  *
- * @ORM\Table()
+ * @ORM\Table(name="api_track")
  * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\TrackRepository")
  */
 class Track

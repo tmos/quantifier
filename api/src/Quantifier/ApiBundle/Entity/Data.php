@@ -5,9 +5,9 @@ namespace Quantifier\ApiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * data
+ * Data
  *
- * @ORM\Table()
+ * @ORM\Table(name="api_data")
  * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\dataRepository")
  */
 abstract class Data

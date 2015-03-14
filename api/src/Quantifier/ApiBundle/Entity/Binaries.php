@@ -5,9 +5,9 @@ namespace Quantifier\ApiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * binaries
+ * Binaries
  *
- * @ORM\Table()
+ * @ORM\Table(name="api_binaries")
  * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\BinariesRepository")
  */
 class Binaries extends Data

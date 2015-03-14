@@ -5,9 +5,9 @@ namespace Quantifier\ApiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * evolution
+ * Evolution
  *
- * @ORM\Table()
+ * @ORM\Table(name="api_evolution")
  * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\EvolutionRepository")
  */
 class Evolution extends Data

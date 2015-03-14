@@ -5,9 +5,9 @@ namespace Quantifier\ApiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * listing
+ * Listing
  *
- * @ORM\Table()
+ * @ORM\Table(name="api_listing")
  * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\ListingRepository")
  */
 class Listing extends Data

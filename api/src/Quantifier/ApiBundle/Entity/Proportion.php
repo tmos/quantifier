@@ -6,9 +6,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * proportion
+ * Proportion
  *
- * @ORM\Table()
+ * @ORM\Table(name="api_proportion")
  * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\ProportionRepository")
  */
 class Proportion

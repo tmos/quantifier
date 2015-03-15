@@ -5,6 +5,7 @@
 /** Colors */
 body {
     /*background-color: #fff;*/
+    font-size:1.6em;
     background-color: #254966;
     color:#222;
 }
@@ -24,6 +25,14 @@ a:focus {
 /** Layout */
 
 /** Elements */
+.Presentation {
+    max-width: 960px;
+    margin: 0 auto;
+}
+    .SignUpNow {
+        
+    }
+
 .Header {
     margin: 0;
     padding: 0;
@@ -112,7 +121,7 @@ input[type="button"] {
     font-size: 1.7rem;
     font-weight: bold;
     border: 0 none;
-    color:#EEE;
+    color:#FFF;
     background: #EF2D00;
 }
 .Btn:hover,

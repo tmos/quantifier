@@ -9,6 +9,7 @@ App.ApplicationAdapter = DS.FixtureAdapter.extend();
 App.Router.map(function() {
     this.route('login');
     this.route('signup');
+    this.resource('register');
     this.resource('settings');
     this.resource('tracks');
     this.resource('track', { path: 'tracks/:track_id' });

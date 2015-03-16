@@ -1,0 +1,7 @@
+rest_user :
+  type : rest
+  resource: "@QFUserBundle/Resources/config/routing_rest.yml"
+
+rest_api :
+  type : rest
+  resource: "@QFApiBundle/Resources/config/routing_rest.yml"

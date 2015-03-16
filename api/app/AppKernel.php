@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new Quantifier\ApiBundle\QFApiBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\RestBundle\FOSRestBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Quantifier\UserBundle\QFUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

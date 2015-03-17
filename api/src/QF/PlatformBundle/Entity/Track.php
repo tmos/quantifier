@@ -1,6 +1,6 @@
 <?php
 
-namespace Quantifier\ApiBundle\Entity;
+namespace QF\PlatformBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Track
  *
  * @ORM\Table(name="api_track")
- * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\TrackRepository")
+ * @ORM\Entity(repositoryClass="QF\PlatformBundle\Entity\TrackRepository")
  */
 class Track
 {

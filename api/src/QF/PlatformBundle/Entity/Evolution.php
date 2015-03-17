@@ -1,6 +1,6 @@
 <?php
 
-namespace Quantifier\ApiBundle\Entity;
+namespace QF\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Evolution
  *
  * @ORM\Table(name="api_evolution")
- * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\EvolutionRepository")
+ * @ORM\Entity(repositoryClass="QF\PlatformBundle\Entity\EvolutionRepository")
  */
 class Evolution extends Data
 {

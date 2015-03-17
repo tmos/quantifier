@@ -1,0 +1,3 @@
+qf_api_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: QFPlatformBundle:Default:index }

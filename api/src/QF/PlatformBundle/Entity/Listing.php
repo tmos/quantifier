@@ -1,6 +1,6 @@
 <?php
 
-namespace Quantifier\ApiBundle\Entity;
+namespace QF\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Listing
  *
  * @ORM\Table(name="api_listing")
- * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\ListingRepository")
+ * @ORM\Entity(repositoryClass="QF\PlatformBundle\Entity\ListingRepository")
  */
 class Listing extends Data
 {

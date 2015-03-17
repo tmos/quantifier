@@ -1,6 +1,6 @@
 <?php
 
-namespace Quantifier\ApiBundle\Entity;
+namespace QF\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Binaries
  *
  * @ORM\Table(name="api_binaries")
- * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\BinariesRepository")
+ * @ORM\Entity(repositoryClass="QF\PlatformBundle\Entity\BinariesRepository")
  */
 class Binaries extends Data
 {

@@ -1,13 +1,3 @@
-qf_user:
-    resource: "@QFUserBundle/Resources/config/routing.yml"
-    prefix:   /
-
 qf_api:
-    resource: "@QFApiBundle/Resources/config/routing.yml"
+    resource: "@QFPlatformBundle/Resources/config/routing.yml"
     prefix:   /
-
-#REST
-rest :
-  type : rest
-  resource : "routing_rest.yml"
-  prefix : /api

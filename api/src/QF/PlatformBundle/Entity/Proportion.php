@@ -1,6 +1,6 @@
 <?php
 
-namespace Quantifier\ApiBundle\Entity;
+namespace QF\PlatformBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Proportion
  *
  * @ORM\Table(name="api_proportion")
- * @ORM\Entity(repositoryClass="Quantifier\ApiBundle\Entity\ProportionRepository")
+ * @ORM\Entity(repositoryClass="QF\PlatformBundle\Entity\ProportionRepository")
  */
 class Proportion
 {

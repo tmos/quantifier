@@ -70,20 +70,6 @@ swiftmailer:
 
 # FOSRestBundle Configuration
 fos_rest:
-    param_fetcher_listener: true
-    body_listener: true
-    format_listener: true
-    view:
-        view_response_listener: 'force'
-        formats:
-            xml: true
-            json : true
-        templating_formats:
-            html: true
-        force_redirects:
-            html: true
-        failed_validation: HTTP_BAD_REQUEST
-        default_engine: twig
     routing_loader:
         default_format: json
 
@@ -91,4 +77,4 @@ fos_rest:
 fos_user:
     db_driver:     orm                       # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
     firewall_name: main                      # Le nom du firewall derrière lequel on utilisera ces utilisateurs
-    user_class:    TE\UserBundle\Entity\User # La classe de l'entité User que nous utilisons
+    user_class:    QF\UserBundle\Entity\User # La classe de l'entité User que nous utilisons

@@ -23,14 +23,14 @@ class Proportion
     private $id;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="creator", type="integer")
+     * @ORM\Column(name="creator", type="string")
      */
     private $creator;
 
     /**
-    *  @ORM\OneToMany(targetEntity="Quantifier\ApiBundle\Entity\Data", mappedBy="proportion")
+    *  @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Data", mappedBy="proportion")
     */
     private $evolutions;
 

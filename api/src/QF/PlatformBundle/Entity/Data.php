@@ -36,7 +36,7 @@ abstract class Data
     private $comment;
 
     /**
-    *  @ORM\ManyToOne(targetEntity="Quantifier\ApiBundle\Entity\Track", inversedBy="datas")
+    *  @ORM\ManyToOne(targetEntity="QF\PlatformBundle\Entity\Track", inversedBy="datas")
     *  @ORM\JoinColumn(nullable=true)
     */
     private $track;

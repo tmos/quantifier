@@ -30,9 +30,9 @@ class Track
     private $name;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="creator", type="integer")
+     * @ORM\Column(name="creator", type="string")
      */
     private $creator;
 
@@ -51,7 +51,7 @@ class Track
     private $type;
 
     /**
-    *  @ORM\OneToMany(targetEntity="Quantifier\ApiBundle\Entity\Data", mappedBy="track")
+    *  @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Data", mappedBy="track")
     */
     private $datas;
 

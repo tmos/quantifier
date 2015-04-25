@@ -1,3 +1,5 @@
 qf_api:
-    resource: "@QFPlatformBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: "@QFPlatformBundle/Controller/"
+    type:     annotation
+    prefix:   /api
+

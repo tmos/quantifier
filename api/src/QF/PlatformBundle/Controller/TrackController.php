@@ -2,6 +2,7 @@
 
 namespace QF\PlatformBundle\Controller;
 
+use Doctrine\Common\Proxy\Exception\InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -21,7 +22,7 @@ class TrackController extends Controller
     /**
      * Lists all Track entities.
      *
-     * @Route("/tracks.xml", name="track_all")
+     * @Route("/tracks", name="track__all")
      * @Method("GET")
      */
     public function getAllAction()
@@ -38,7 +39,7 @@ class TrackController extends Controller
     /**
      * Finds a Track entity.
      *
-     * @Route("/track/{id}", name="track__id")
+     * @Route("/track/{id}", name="track__show")
      * @Method("GET")
      */
     public function getAction($id)
@@ -59,119 +60,52 @@ class TrackController extends Controller
     /**
      * Creates a new Track entity.
      *
-     * @Route("/", name="track__create")
+     * @Route("/track", name="track__create")
      * @Method("POST")
      */
     public function createAction(Request $request)
     {
         $entity = new Track();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($request->getMethod() == 'POST') {
+            $date = new \DateTime();
+            if ($request->get('name') != "") {
+                $entity->setName($request->get('name'));
+            } else {
+                throw new \Exception("Name empty");
+            }
+            if ($request->get('creator') != "") {
+                $entity->setCreator($request->get('creator'));
+            } else {
+                throw new \Exception("Creator empty");
+            }
+            if ($request->get('date') != "") {
+                $entity->setDate($date->setTimestamp($request->get('date')));
+            } else {
+                throw new \Exception("Date empty");
+            }
+            if ($request->get('type') != "") {
+                $entity->setType($request->get('type'));
+            } else {
+                throw new \Exception("Type empty");
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('track__show', array('id' => $entity->getId())));
+        } else {
+            throw $this->createNotFoundException('POST not good');
         }
 
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
     }
 
-    /**
-     * Creates a form to create a Track entity.
-     *
-     * @param Track $entity The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createCreateForm(Track $entity)
-    {
-        $form = $this->createForm(new TrackType(), $entity, array(
-            'action' => $this->generateUrl('track__create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
-    }
-
-    /**
-     * Displays a form to create a new Track entity.
-     *
-     * @Route("/new", name="track__new")
-     * @Method("GET")
-     * @Template()
-     */
-    public function newAction()
-    {
-        $entity = new Track();
-        $form   = $this->createCreateForm($entity);
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-
-
-    /**
-     * Displays a form to edit an existing Track entity.
-     *
-     * @Route("/{id}/edit", name="track__edit")
-     * @Method("GET")
-     * @Template()
-     */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('QFPlatformBundle:Track')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Track entity.');
-        }
-
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-    * Creates a form to edit a Track entity.
-    *
-    * @param Track $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Track $entity)
-    {
-        $form = $this->createForm(new TrackType(), $entity, array(
-            'action' => $this->generateUrl('track__update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
-        return $form;
-    }
     /**
      * Edits an existing Track entity.
      *
-     * @Route("/{id}", name="track__update")
+     * @Route("/track/{id}", name="track__update")
      * @Method("PUT")
-     * @Template("QFPlatformBundle:Track:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -202,7 +136,7 @@ class TrackController extends Controller
     /**
      * Deletes a Track entity.
      *
-     * @Route("/{id}", name="track__delete")
+     * @Route("/track/{id}", name="track__delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -219,23 +153,7 @@ class TrackController extends Controller
         $em->flush();
 
 
-        return $this->redirect($this->generateUrl('track_'));
-    }
-
-    /**
-     * Creates a form to delete a Track entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('track__delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+        $request->setMethod('GET');
+        return $this->redirect($this->generateUrl('track__all'));
     }
 }

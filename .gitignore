@@ -1,41 +1,41 @@
-*.bpkg
-*.gem
-*.rbc
-.DS_Store
-.bpm
-.bundle
-.config
-.github-upload-token
-.yardoc
-InstalledFiles
-_site
-_yardoc
-assets
-assets/bpm_libs.js
-assets/bpm_styles.css
-coverage
-dist
-docs
-lib/*/tests/all.js
-lib/*/tests/qunit*
-lib/bundler/man
-pkg
-rdoc
-spade-boot.js
-spec/reports
-test/tmp
-test/version_tmp
-test_*.html
-/tests/ember-tests.js
-tmp
-tmp*.gem
-tmp.bpm
-tmp.spade
-tests/source
+
+.DS_STORE
+
+# Don’t commit the following directories created by pub.
+packages
+pubspec.lock
+.pub
+
+/dist/
+.buildlog
 node_modules
-bundle/
-*~
-publish_to_bower/
-bower_components/
+bower_components
+
+# Or broccoli working directory
+tmp
+
+# Or the files created by dart2js.
+*.dart.js
+*.dart.precompiled.js
+*.js_
+*.js.deps
+*.js.map
+
+# Or type definitions we mirror from github
+**/typings/**/*.d.ts
+
+# Include when developing application packages.
+pubspec.lock
+.c9
+.idea/
+*.swo
+
+# Don't check in secret files
+*secret.js
+
+# Ignore npm debug log
 npm-debug.log
-.ember-cli
+
+/docs/bower_components/
+
+.idea

@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use QF\PlatformBundle\Entity\Track;
-use QF\PlatformBundle\Form\TrackType;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -63,7 +62,7 @@ class TrackController extends Controller
      * @Route("/track", name="track__create")
      * @Method("POST")
      */
-    public function createAction(Request $request)
+    public function postAction(Request $request)
     {
         $entity = new Track();
 
@@ -107,7 +106,7 @@ class TrackController extends Controller
      * @Route("/track/{id}", name="track__update")
      * @Method("PUT")
      */
-    public function updateAction(Request $request, $id)
+    public function putAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -117,22 +116,15 @@ class TrackController extends Controller
             throw $this->createNotFoundException('Unable to find Track entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
+        if ($request->getMethod() == "PUT") {
 
-        if ($editForm->isValid()) {
             $em->flush();
 
             return $this->redirect($this->generateUrl('track__edit', array('id' => $id)));
         }
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
     }
+
     /**
      * Deletes a Track entity.
      *
@@ -153,7 +145,7 @@ class TrackController extends Controller
         $em->flush();
 
 
-        $request->setMethod('GET');
-        return $this->redirect($this->generateUrl('track__all'));
+
+        return $this->forward("QFPlatformBundle:Track:getAll");
     }
 }

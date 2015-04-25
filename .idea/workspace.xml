@@ -46,12 +46,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Data.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Data.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/src/QF/PlatformBundle/Entity/Data.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.576923" vertical-offset="102" max-vertical-offset="1615">
-              <caret line="39" column="34" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
-              <folding />
+            <state vertical-scroll-proportion="0.92488956" vertical-offset="1106" max-vertical-offset="2261">
+              <caret line="105" column="5" selection-start-line="105" selection-start-column="5" selection-end-line="105" selection-end-column="5" />
+              <folding>
+                <element signature="e#1173#1299#0#PHP" expanded="true" />
+                <element signature="e#1377#1458#0#PHP" expanded="true" />
+                <element signature="e#1567#1685#0#PHP" expanded="true" />
+                <element signature="e#1761#1838#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -106,16 +111,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TrackController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TrackController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/src/QF/PlatformBundle/Controller/TrackController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7518248" vertical-offset="2173" max-vertical-offset="2652">
-              <caret line="155" column="35" selection-start-line="155" selection-start-column="35" selection-end-line="155" selection-end-column="35" />
+            <state vertical-scroll-proportion="-8.826923" vertical-offset="1649" max-vertical-offset="2669">
+              <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
               <folding>
                 <element signature="e#48#109#0#PHP" expanded="true" />
-                <element signature="e#1180#1608#0#PHP" expanded="true" />
-                <element signature="e#1741#3028#0#PHP" expanded="true" />
-                <element signature="e#3169#3971#0#PHP" expanded="true" />
+                <element signature="e#698#1013#0#PHP" expanded="true" />
+                <element signature="e#1142#1570#0#PHP" expanded="true" />
+                <element signature="e#1703#2988#0#PHP" expanded="true" />
+                <element signature="e#3745#4171#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -171,7 +177,6 @@
         <option value="$PROJECT_DIR$/api/app/config/routing_rest.yml" />
         <option value="$PROJECT_DIR$/api/src/QF/UserBundle/Resources/config/routing_rest.yml" />
         <option value="$PROJECT_DIR$/api/src/QF/UserBundle/QFUserBundle.php" />
-        <option value="$PROJECT_DIR$/api/src/QF/PlatformBundle/Entity/Data.php" />
         <option value="$PROJECT_DIR$/api/src/QF/PlatformBundle/Entity/Evolution.php" />
         <option value="$PROJECT_DIR$/api/app/config/security.yml" />
         <option value="$PROJECT_DIR$/api/src/QF/UserBundle/Entity/User.php" />
@@ -188,6 +193,7 @@
         <option value="$PROJECT_DIR$/api/src/QF/PlatformBundle/Form/TrackType.php" />
         <option value="$PROJECT_DIR$/api/src/QF/PlatformBundle/Entity/Track.php" />
         <option value="$PROJECT_DIR$/api/src/QF/PlatformBundle/Controller/TrackController.php" />
+        <option value="$PROJECT_DIR$/api/src/QF/PlatformBundle/Entity/Data.php" />
       </list>
     </option>
   </component>
@@ -868,7 +874,7 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31284153" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31284153" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38387978" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1312,14 +1318,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/src/QF/PlatformBundle/Entity/Data.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.576923" vertical-offset="102" max-vertical-offset="1615">
-          <caret line="39" column="34" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/src/QF/PlatformBundle/Entity/Track.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="10.461538" vertical-offset="952" max-vertical-offset="2669">
@@ -1330,13 +1328,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/src/QF/PlatformBundle/Controller/TrackController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7518248" vertical-offset="2173" max-vertical-offset="2652">
-          <caret line="155" column="35" selection-start-line="155" selection-start-column="35" selection-end-line="155" selection-end-column="35" />
+        <state vertical-scroll-proportion="-8.826923" vertical-offset="1649" max-vertical-offset="2669">
+          <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
           <folding>
             <element signature="e#48#109#0#PHP" expanded="true" />
-            <element signature="e#1180#1608#0#PHP" expanded="true" />
-            <element signature="e#1741#3028#0#PHP" expanded="true" />
-            <element signature="e#3169#3971#0#PHP" expanded="true" />
+            <element signature="e#698#1013#0#PHP" expanded="true" />
+            <element signature="e#1142#1570#0#PHP" expanded="true" />
+            <element signature="e#1703#2988#0#PHP" expanded="true" />
+            <element signature="e#3745#4171#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/QF/PlatformBundle/Entity/Data.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.92488956" vertical-offset="1106" max-vertical-offset="2261">
+          <caret line="105" column="5" selection-start-line="105" selection-start-column="5" selection-end-line="105" selection-end-column="5" />
+          <folding>
+            <element signature="e#1173#1299#0#PHP" expanded="true" />
+            <element signature="e#1377#1458#0#PHP" expanded="true" />
+            <element signature="e#1567#1685#0#PHP" expanded="true" />
+            <element signature="e#1761#1838#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,0 +1,14 @@
+{
+  "name": "Quantifier",
+  "description": "A slef quantification application",
+  "version": "0.0.0",
+  "homepage": "https://github.com/tmos/quantifier",
+  "license": "AGPL",
+  "private": true,
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-route": "1.2.x",
+    "knacss":"3.0",
+    "chartjs": "1.0.1"
+  }
+}

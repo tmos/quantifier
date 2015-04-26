@@ -28,7 +28,7 @@ class EvolutionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $track = $em->getRepository('QFPlatformBundle:Evolution')->find($id);
+        $track = $em->getRepository('QFPlatformBundle:Track')->find($id);
 
         $entities = $track->getAllData();
 

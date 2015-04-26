@@ -177,14 +177,14 @@ class Track
     }
 
     /**
-     *  Add data
+     *  Add evolution
      *
-     * @param Data $data
+     * @param Evolution $data
      * @return Track
      */
-    public function addData(Data $data)
+    public function addEvolution(Evolution $data)
     {
-        $this->datas[] = $data;
+        $this->evolutions[] = $data;
 
         $data->setTrack($this);
 
@@ -192,13 +192,48 @@ class Track
     }
 
     /**
-     *  Remove data
+     *  Remove evolution
      *
-     * @param Data $data
+     * @param Evolution $data
      */
-    public function removeData(Data $data)
+    public function removeEvolution(Evolution $data)
     {
-        $this->datas->removeElements($data);
+        $this->evolutions->removeElements($data);
+    }
+
+    /**
+     * Get All evolution
+     *
+     * @return Evolution[]
+     */
+    public function getEvolutions()
+    {
+        return $this->evolutions;
+    }
+
+    /**
+     *  Add data
+     *
+     * @param Listing $data
+     * @return Track
+     */
+    public function addListing(Listing $data)
+    {
+        $this->listings[] = $data;
+
+        $data->setTrack($this);
+
+        return $this;
+    }
+
+    /**
+     *  Remove listing
+     *
+     * @param Listing $data
+     */
+    public function removeData(Listing $data)
+    {
+        $this->listings->removeElements($data);
     }
 
     /**
@@ -206,8 +241,43 @@ class Track
      *
      * @return Data[]
      */
-    public function getAllData()
+    public function getListings()
     {
-        return $this->datas;
+        return $this->listings;
+    }
+
+    /**
+     *  Add binaries
+     *
+     * @param Binaries $data
+     * @return Track
+     */
+    public function addBinaries(Binaries $data)
+    {
+        $this->binaries[] = $data;
+
+        $data->setTrack($this);
+
+        return $this;
+    }
+
+    /**
+     *  Remove binaries
+     *
+     * @param Binaries $data
+     */
+    public function removeBinaries(Binaries $data)
+    {
+        $this->binaries->removeElements($data);
+    }
+
+    /**
+     * Get All binaries
+     *
+     * @return Binaries[]
+     */
+    public function getBinaries()
+    {
+        return $this->binaries;
     }
 }

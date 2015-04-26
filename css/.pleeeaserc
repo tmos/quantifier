@@ -1,5 +1,12 @@
 {
-  "in": ["../bower_components/knacss/css/knacss-unminified.css", "base.css", "layout.css", "colors.css", "objects.css"],
+  "in": [
+	"../bower_components/knacss/css/knacss-unminified.css",
+	"base.css",
+	"layout.css",
+	"colors.css",
+	"objects.css",
+	"../bower_components/angular-chart.js/dist/angular-chart.css"
+],
   "out": "styles.min.css",
   "browsers": ["last 3 versions"]
 }

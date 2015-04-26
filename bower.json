@@ -8,7 +8,8 @@
   "dependencies": {
     "angular": "1.2.x",
     "angular-route": "1.2.x",
-    "knacss":"4.0",
-    "chartjs": "1.0.1"
+    "knacss":"4.0"
+//    "chart.js":"1.0.2",
+//    "angular-chart.js": "0.7.0"
   }
 }

@@ -9,18 +9,18 @@ angular.module('quantifier', ['ngRoute'])
                 templateUrl:'templates/pages/register/index.html'
             })
             /* Tracks */
-            .when('/track/:id', {
-                templateUrl: 'templates/pages/track/index.html',
-                controller:'TrackShowController',
-                controllerAs:'trackCtrl'
-            })
             .when('/tracks', {
                 templateUrl: 'templates/pages/tracks/index.html',
                 controller:'TracksIndexController',
                 controllerAs:'indexCtrl'
             })
-            .when('/track/new', {
-                templateUrl: 'templates/pages/track-new/index.html',
+            .when('/track/:id', {
+                templateUrl: 'templates/pages/track/index.html',
+                controller:'TrackShowController',
+                controllerAs:'trackCtrl'
+            })
+            .when('/tracks/new', {
+                templateUrl: 'templates/pages/tracks-new/index.html',
                 controller:'TrackNewController',
                 controllerAs:'newCtrl'
             })
@@ -35,8 +35,8 @@ angular.module('quantifier', ['ngRoute'])
                 controller:'ProportionShowController',
                 controllerAs:'proportionCtrl'
             })
-            .when('/proportion/new', {
-                templateUrl: 'templates/pages/proportion/new.html',
+            .when('/proportions/new', {
+                templateUrl: 'templates/pages/proportions-new/index.html',
                 controller:'TrackNewController',
                 controllerAs:'newCtrl'
             })

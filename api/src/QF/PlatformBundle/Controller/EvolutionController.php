@@ -3,17 +3,17 @@
 namespace QF\PlatformBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use QF\PlatformBundle\Entity\Evolution;
-use QF\PlatformBundle\Form\EvolutionType;
 
 /**
  * Evolution controller.
  *
- * @Route("/")
+ * @Route("/evolution")
  */
 class EvolutionController extends Controller
 {
@@ -21,16 +21,16 @@ class EvolutionController extends Controller
     /**
      * Lists all Evolution entities.
      *
-     * @Route("/evolutions/{id}", name="evolution__all")
+     * @Route("/{idTrack}", name="evolution__all")
      * @Method("GET")
      */
-    public function getAllAction($id)
+    public function getAllAction($idTrack)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $track = $em->getRepository('QFPlatformBundle:Track')->find($id);
+        $track = $em->getRepository('QFPlatformBundle:Track')->find($idTrack);
 
-        $entities = $track->getAllData();
+        $entities = $track->getEvolutions();
 
         $serializedEntity = $this->container->get('serializer')->serialize($entities, 'json');
 
@@ -40,226 +40,179 @@ class EvolutionController extends Controller
     /**
      * Finds a Track entity.
      *
-     * @Route("/evolution/{id}", name="evolution__get")
+     * @Route("/e/{id}", name="evolution__get")
      * @Method("GET")
      */
-    public function getAction()
+    public function getAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('QFPlatformBundle:Evolution')->findAll();
+        $entity = $em->getRepository('QFPlatformBundle:Evolution')->find($id);
 
-        return array(
-            'entities' => $entities,
-        );
+        $serializedEntity = $this->container->get('serializer')->serialize($entity, 'json');
+
+        return new Response($serializedEntity);
     }
+
     /**
      * Creates a new Evolution entity.
      *
-     * @Route("/", name="evolution_create")
+     * @Route("/{idTrack}", name="evolution__post")
      * @Method("POST")
-     * @Template("QFPlatformBundle:Evolution:new.html.twig")
      */
-    public function createAction(Request $request)
+    public function postAction(Request $request, $idTrack)
     {
         $entity = new Evolution();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('evolution_show', array('id' => $entity->getId())));
-        }
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
-     * Creates a form to create a Evolution entity.
-     *
-     * @param Evolution $entity The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createCreateForm(Evolution $entity)
-    {
-        $form = $this->createForm(new EvolutionType(), $entity, array(
-            'action' => $this->generateUrl('evolution_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
-    }
-
-    /**
-     * Displays a form to create a new Evolution entity.
-     *
-     * @Route("/new", name="evolution_new")
-     * @Method("GET")
-     * @Template()
-     */
-    public function newAction()
-    {
-        $entity = new Evolution();
-        $form   = $this->createCreateForm($entity);
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
-     * Finds and displays a Evolution entity.
-     *
-     * @Route("/{id}", name="evolution_show")
-     * @Method("GET")
-     * @Template()
-     */
-    public function showAction($id)
-    {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('QFPlatformBundle:Evolution')->find($id);
+        $track = $em->getRepository('QFPlatformBundle:Track')->find($idTrack);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Evolution entity.');
+        $test = true;
+        $message = "";
+
+        if (!$track) {
+            $test = false;
+            $message = "Unable to find Track entity";
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-     * Displays a form to edit an existing Evolution entity.
-     *
-     * @Route("/{id}/edit", name="evolution_edit")
-     * @Method("GET")
-     * @Template()
-     */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('QFPlatformBundle:Evolution')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Evolution entity.');
+        if($track->getType() != 0) {
+            $test = false;
+            $message = "This track is a not of the right type";
         }
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+        if ($request->getMethod() == 'POST' && $test) {
+            $dateCreation = new \DateTime();
+            $dateChosen = new \DateTime();
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            if ($request->get('value') != "") {
+                $replace = array(".",",");
+                $entity->setValue(str_replace($replace,".",$request->get('value')));
+            } else {
+                $test = false;
+                $message = "Value is empty";
+            }
+            if ($request->get('dateChosen') != "") {
+                $entity->setDateChosen($dateChosen->setTimestamp($request->get('dateChosen')));
+            } else {
+                $test = false;
+                $message = "DateChosen is empty";
+            }
+            if ($request->get('comment') != "") {
+                $entity->setComment($request->get('comment'));
+            }
+
+            if ($test) {
+                $entity->setDateCreation($dateCreation);
+
+                $track->addEvolution($entity);
+                $em->persist($track);
+
+                $em->persist($entity);
+                $em->flush();
+            }
+        }
+
+        $worked = array(
+            'isSuccesful' => $test,
+            'message' => $message
         );
+
+        $serializedEntity = $this->container->get('serializer')->serialize($worked, 'json');
+
+        return new Response($serializedEntity);
     }
 
-    /**
-    * Creates a form to edit a Evolution entity.
-    *
-    * @param Evolution $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Evolution $entity)
-    {
-        $form = $this->createForm(new EvolutionType(), $entity, array(
-            'action' => $this->generateUrl('evolution_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
-        return $form;
-    }
     /**
      * Edits an existing Evolution entity.
      *
-     * @Route("/{id}", name="evolution_update")
+     * @Route("/{id}", name="evolution__put")
      * @Method("PUT")
-     * @Template("QFPlatformBundle:Evolution:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
+    public function putAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('QFPlatformBundle:Evolution')->find($id);
 
+        $test = true;
+        $message = "";
+
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Evolution entity.');
+            $test = false;
+            $message = "Unable to find Evolution entity";
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
+        if ($request->getMethod() == "PUT" && $test) {
+            $changed = false;
+            $newDateChosen = new \DateTime();
+            if ($request->get('value') != "" && $request->get('value') != $entity->getValue()) {
+                $replace = array(".",",");
+                $entity->setValue(str_replace($replace,".",$request->get('value')));
+                $changed = true;
+            }
+            if ($request->get('dateChosen') != "" ) {
+                $newDateChosen->setTimestamp($request->get('dateChosen'));
+                if ($newDateChosen->diff($entity->getDateChosen())) {
+                    $entity->setDateChosen($newDateChosen);
+                    $changed = true;
+                }
+            }
+            if ($request->get('comment') != "" && $request->get('comment') != $entity->getComment()) {
+                $entity->setComment($request->get('comment'));
+                $changed = true;
+            }
 
-        if ($editForm->isValid()) {
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('evolution_edit', array('id' => $id)));
+            if ($changed) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($entity);
+                $em->flush();
+            }
         }
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+        $worked = array(
+            'isSuccesful' => $test,
+            'message' => $message
         );
+
+        $serializedEntity = $this->container->get('serializer')->serialize($worked, 'json');
+
+        return new Response($serializedEntity);
     }
+
     /**
      * Deletes a Evolution entity.
      *
-     * @Route("/{id}", name="evolution_delete")
+     * @Route("/{id}", name="evolution__delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('QFPlatformBundle:Evolution')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('QFPlatformBundle:Evolution')->find($id);
+        $test = true;
+        $message = "";
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Evolution entity.');
-            }
+        if (!$entity) {
+            $test = false;
+            $message = 'Unable to find Evolution entity';
+        }
 
+        if ($test) {
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('evolution'));
+
+        $worked = array(
+            'isSuccesful' => $test,
+            'message' => $message
+        );
+
+        $serializedEntity = $this->container->get('serializer')->serialize($worked, 'json');
+
+        return new Response($serializedEntity);
     }
 
-    /**
-     * Creates a form to delete a Evolution entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('evolution_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
-    }
 }

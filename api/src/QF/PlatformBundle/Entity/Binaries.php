@@ -22,13 +22,6 @@ class Binaries
     private $id;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="value", type="boolean")
-     */
-    private $value;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateCreation", type="datetime")
@@ -45,7 +38,7 @@ class Binaries
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="string", length=512)
+     * @ORM\Column(name="comment", type="string", length=512, nullable=true)
      */
     private $comment;
 

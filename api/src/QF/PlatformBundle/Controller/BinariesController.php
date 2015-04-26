@@ -3,12 +3,12 @@
 namespace QF\PlatformBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use QF\PlatformBundle\Entity\Binaries;
-use QF\PlatformBundle\Form\BinariesType;
 
 /**
  * Binaries controller.
@@ -21,227 +21,185 @@ class BinariesController extends Controller
     /**
      * Lists all Binaries entities.
      *
-     * @Route("/", name="binaries")
+     * @Route("/{idTrack}", name="binaries__all")
      * @Method("GET")
-     * @Template()
      */
-    public function indexAction()
+    public function getAllAction($idTrack)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('QFPlatformBundle:Binaries')->findAll();
+        $track = $em->getRepository('QFPlatformBundle:Track')->find($idTrack);
 
-        return array(
-            'entities' => $entities,
-        );
+        $entities = $track->getBinaries();
+
+        $serializedEntity = $this->container->get('serializer')->serialize($entities, 'json');
+
+        return new Response($serializedEntity);
+    }
+
+    /**
+     * Finds a Binaries entity.
+     *
+     * @Route("/b/{id}", name="binaries__get")
+     * @Method("GET")
+     */
+    public function getAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('QFPlatformBundle:Evolution')->find($id);
+
+        $serializedEntity = $this->container->get('serializer')->serialize($entity, 'json');
+
+        return new Response($serializedEntity);
     }
     /**
      * Creates a new Binaries entity.
      *
-     * @Route("/", name="binaries_create")
+     * @Route("/{idTrack}", name="binaries__post")
      * @Method("POST")
-     * @Template("QFPlatformBundle:Binaries:new.html.twig")
      */
-    public function createAction(Request $request)
+    public function postAction(Request $request, $idTrack)
     {
         $entity = new Binaries();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+        $test = true;
+        $message = "";
 
-            return $this->redirect($this->generateUrl('binaries_show', array('id' => $entity->getId())));
-        }
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
-     * Creates a form to create a Binaries entity.
-     *
-     * @param Binaries $entity The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createCreateForm(Binaries $entity)
-    {
-        $form = $this->createForm(new BinariesType(), $entity, array(
-            'action' => $this->generateUrl('binaries_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
-    }
-
-    /**
-     * Displays a form to create a new Binaries entity.
-     *
-     * @Route("/new", name="binaries_new")
-     * @Method("GET")
-     * @Template()
-     */
-    public function newAction()
-    {
-        $entity = new Binaries();
-        $form   = $this->createCreateForm($entity);
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
-     * Finds and displays a Binaries entity.
-     *
-     * @Route("/{id}", name="binaries_show")
-     * @Method("GET")
-     * @Template()
-     */
-    public function showAction($id)
-    {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('QFPlatformBundle:Binaries')->find($id);
+        $track = $em->getRepository('QFPlatformBundle:Track')->find($idTrack);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Binaries entity.');
+        if(!$track) {
+            $test = false;
+            $message = "This track is a not of the right type";
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-     * Displays a form to edit an existing Binaries entity.
-     *
-     * @Route("/{id}/edit", name="binaries_edit")
-     * @Method("GET")
-     * @Template()
-     */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('QFPlatformBundle:Binaries')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Binaries entity.');
+        if($track->getType() != 2) {
+            $test = false;
+            $message = "Track is a not a binaries track";
         }
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+        if ($request->getMethod() == 'POST' && $test) {
+            $dateCreation = new \DateTime();
+            $dateChosen = new \DateTime();
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            if ($request->get('dateChosen') != "") {
+                $entity->setDateChosen($dateChosen->setTimestamp($request->get('dateChosen')));
+            } else {
+                $test = false;
+                $message = "Date is empty";
+            }
+            if ($request->get('comment') != "") {
+                $entity->setComment($request->get('comment'));
+            }
+
+            if($test) {
+                $entity->setDateCreation($dateCreation);
+
+                $track->addBinaries($entity);
+                $em->persist($track);
+
+                $em->persist($entity);
+                $em->flush();
+            }
+        }
+
+        $worked = array(
+            'isSuccesful' => $test,
+            'message' => $message
         );
+
+        $serializedEntity = $this->container->get('serializer')->serialize($worked, 'json');
+
+        return new Response($serializedEntity);
     }
 
-    /**
-    * Creates a form to edit a Binaries entity.
-    *
-    * @param Binaries $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Binaries $entity)
-    {
-        $form = $this->createForm(new BinariesType(), $entity, array(
-            'action' => $this->generateUrl('binaries_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
-        return $form;
-    }
     /**
      * Edits an existing Binaries entity.
      *
-     * @Route("/{id}", name="binaries_update")
+     * @Route("/{id}", name="binaries__put")
      * @Method("PUT")
-     * @Template("QFPlatformBundle:Binaries:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
+    public function putAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('QFPlatformBundle:Binaries')->find($id);
 
+        $test = true;
+        $message = "";
+
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Binaries entity.');
+            $test = false;
+            $message= 'Unable to find Binaries entity';
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
+        if ($request->getMethod() == "PUT" && $test) {
+            $changed = false;
+            $newDateChosen = new \DateTime();
+            if ($request->get('dateChosen') != "" ) {
+                $newDateChosen->setTimestamp($request->get('dateChosen'));
+                if ($newDateChosen->diff($entity->getDateChosen())) {
+                    $entity->setDateChosen($newDateChosen);
+                    $changed = true;
+                }
+            }
+            if ($request->get('comment') != "" && $request->get('comment') != $entity->getComment()) {
+                $entity->setComment($request->get('comment'));
+                $changed = true;
+            }
 
-        if ($editForm->isValid()) {
-            $em->flush();
+            if ($changed) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($entity);
+                $em->flush();
+            }
 
-            return $this->redirect($this->generateUrl('binaries_edit', array('id' => $id)));
         }
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+        $worked = array(
+            'isSuccesful' => $test,
+            'message' => $message
         );
+
+        $serializedEntity = $this->container->get('serializer')->serialize($worked, 'json');
+
+        return new Response($serializedEntity);
     }
+
     /**
      * Deletes a Binaries entity.
      *
-     * @Route("/{id}", name="binaries_delete")
+     * @Route("/{id}", name="binaries__delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('QFPlatformBundle:Binaries')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('QFPlatformBundle:Binaries')->find($id);
+        $test = true;
+        $message = "";
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Binaries entity.');
-            }
+        if (!$entity) {
+            $test = false;
+            $message = 'Unable to find Binaries entity';
+        }
 
+        if ($test) {
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('binaries'));
-    }
 
-    /**
-     * Creates a form to delete a Binaries entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('binaries_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+        $worked = array(
+            'isSuccesful' => $test,
+            'message' => $message
+        );
+
+        $serializedEntity = $this->container->get('serializer')->serialize($worked, 'json');
+
+        return new Response($serializedEntity);
     }
 }

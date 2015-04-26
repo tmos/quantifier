@@ -2,7 +2,6 @@
 
 namespace QF\PlatformBundle\Controller;
 
-use Doctrine\Common\Proxy\Exception\InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -38,7 +37,7 @@ class TrackController extends Controller
     /**
      * Finds a Track entity.
      *
-     * @Route("/track/{id}", name="track__show")
+     * @Route("/track/{id}", name="track__get")
      * @Method("GET")
      */
     public function getAction($id)
@@ -93,17 +92,14 @@ class TrackController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('track__show', array('id' => $entity->getId())));
-        } else {
-            throw $this->createNotFoundException('POST not good');
+            return $this->redirect($this->generateUrl('track__get', array('id' => $entity->getId())));
         }
-
     }
 
     /**
      * Edits an existing Track entity.
      *
-     * @Route("/track/{id}", name="track__update")
+     * @Route("/track/{id}", name="track__put")
      * @Method("PUT")
      */
     public function putAction(Request $request, $id)
@@ -117,10 +113,25 @@ class TrackController extends Controller
         }
 
         if ($request->getMethod() == "PUT") {
+            $changed = false;
+            if ($request->get('name') != "" && $request->get('name') != $entity->getName()) {
+                $entity->setName($request->get('name'));
+                $changed = true;
+            }
 
-            $em->flush();
+            if ($changed) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($entity);
+                $em->flush();
+            }
 
-            return $this->redirect($this->generateUrl('track__edit', array('id' => $id)));
+            $worked = array(
+                'isSuccesful' => 1
+            );
+
+            $serializedEntity = $this->container->get('serializer')->serialize($worked, 'json');
+
+            return new Response($serializedEntity);
         }
 
     }
@@ -146,6 +157,12 @@ class TrackController extends Controller
 
 
 
-        return $this->forward("QFPlatformBundle:Track:getAll");
+        $worked = array(
+            'isSuccesful' => 1
+        );
+
+        $serializedEntity = $this->container->get('serializer')->serialize($worked, 'json');
+
+        return new Response($serializedEntity);
     }
 }

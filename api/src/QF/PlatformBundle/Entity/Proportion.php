@@ -30,14 +30,14 @@ class Proportion
     private $creator;
 
     /**
-    *  @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Data", mappedBy="proportion")
-    */
+     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Evolution", mappedBy="proportion")
+     */
     private $evolutions;
 
 
     /**
-    *  Initialize evolutions
-    */
+     *  Initialize evolutions
+     */
     public function __construct()
     {
         $this->evolutions = new ArrayCollection();
@@ -77,11 +77,11 @@ class Proportion
     }
 
     /**
-    *  Add evolution
-    *
-    *  @param Evolution $evolution
-    *  @return Track
-    */
+     *  Add evolution
+     *
+     * @param Evolution $evolution
+     * @return Track
+     */
     public function addEvolutions(Evolution $evolution)
     {
         $this->evolutions[] = $evolution;
@@ -92,20 +92,20 @@ class Proportion
     }
 
     /**
-    *  Remove evolution
-    *
-    *  @param Evolution $evolution
-    */
+     *  Remove evolution
+     *
+     * @param Evolution $evolution
+     */
     public function removeEvolution(Evolution $evolution)
     {
         $this->evolutions->removeElements($evolution);
     }
 
     /**
-    * Get evolutions
-    *
-    * @return Evolutions[]
-    */
+     * Get evolutions
+     *
+     * @return Evolutions[]
+     */
     public function getAllEvolution()
     {
         return $this->evolutions;

@@ -51,13 +51,23 @@ class Track
     private $type;
 
     /**
-    *  @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Data", mappedBy="track")
-    */
-    private $datas;
+     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Evolution", mappedBy="track")
+     */
+    private $evolutions;
 
     /**
-    *  Initialize data
-    */
+     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Listing", mappedBy="track")
+     */
+    private $listings;
+
+    /**
+     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Binaries", mappedBy="track")
+     */
+    private $binaries;
+
+    /**
+     *  Initialize data
+     */
     public function __construct()
     {
         $this->datas = new ArrayCollection();
@@ -167,14 +177,14 @@ class Track
     }
 
     /**
-    *  Add data
-    *
-    *  @param Data $data
-    *  @return Track
-    */
-    public function addData(Data $data)
+     *  Add evolution
+     *
+     * @param Evolution $data
+     * @return Track
+     */
+    public function addEvolution(Evolution $data)
     {
-        $this->datas[] = $data;
+        $this->evolutions[] = $data;
 
         $data->setTrack($this);
 
@@ -182,22 +192,92 @@ class Track
     }
 
     /**
-    *  Remove data
-    *
-    *  @param Data $data
-    */
-    public function removeData(Data $data)
+     *  Remove evolution
+     *
+     * @param Evolution $data
+     */
+    public function removeEvolution(Evolution $data)
     {
-        $this->datas->removeElements($data);
+        $this->evolutions->removeElements($data);
     }
 
     /**
-    * Get All data
-    *
-    * @return Data[]
-    */
-    public function getAllData()
+     * Get All evolution
+     *
+     * @return Evolution[]
+     */
+    public function getEvolutions()
     {
-        return $this->datas;
+        return $this->evolutions;
+    }
+
+    /**
+     *  Add data
+     *
+     * @param Listing $data
+     * @return Track
+     */
+    public function addListing(Listing $data)
+    {
+        $this->listings[] = $data;
+
+        $data->setTrack($this);
+
+        return $this;
+    }
+
+    /**
+     *  Remove listing
+     *
+     * @param Listing $data
+     */
+    public function removeData(Listing $data)
+    {
+        $this->listings->removeElements($data);
+    }
+
+    /**
+     * Get All data
+     *
+     * @return Data[]
+     */
+    public function getListings()
+    {
+        return $this->listings;
+    }
+
+    /**
+     *  Add binaries
+     *
+     * @param Binaries $data
+     * @return Track
+     */
+    public function addBinaries(Binaries $data)
+    {
+        $this->binaries[] = $data;
+
+        $data->setTrack($this);
+
+        return $this;
+    }
+
+    /**
+     *  Remove binaries
+     *
+     * @param Binaries $data
+     */
+    public function removeBinaries(Binaries $data)
+    {
+        $this->binaries->removeElements($data);
+    }
+
+    /**
+     * Get All binaries
+     *
+     * @return Binaries[]
+     */
+    public function getBinaries()
+    {
+        return $this->binaries;
     }
 }

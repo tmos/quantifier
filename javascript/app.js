@@ -7,12 +7,14 @@ angular.module('quantifier', ['ngRoute'])
             .when('/register', {
                 templateUrl:'templates/pages/register/index.html'
             })
-            .when('track/:id', {
-                templateUrl:''
+            .when('/track/:id', {
+                templateUrl: 'templates/pages/track/index.html',
+                controller:'TrackShowController',
+                controllerAs:'trackCtrl'
             })
             .when('/tracks', {
                 templateUrl: 'templates/pages/tracks/index.html',
-                controller:'NotesIndexController',
+                controller:'TracksIndexController',
                 controllerAs:'indexCtrl'
             })
             .when('/tracks/new', {

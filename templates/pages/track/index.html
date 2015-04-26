@@ -1,5 +1,5 @@
 <div class="TrackVisualisation">
-    <h2>{{title}}</h2>
+    <h2>{{track.name}}</h2>
     <div style="border:solid 2px #000;line-height:250px;text-align:center">
         <a href="http://www.chartjs.org/docs/#line-chart">Joli graphique</a>
     </div>
@@ -7,11 +7,8 @@
 
     <h3>Values</h3>
     <table class="ValuesTable">
-
-        {{#each value in values}}
-        <tr>
+        <tr ng-repeat="value in track.values">
             <td>{{value}}</td><td>commentaire</td>
         </tr>
-        {{/each}}
     </table>
 </div>

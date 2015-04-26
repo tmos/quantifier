@@ -1,13 +1,13 @@
 <div class="TrackVisualisation">
-    <h2>{{track.name}}</h2>
+    <h2>{{trackCtrl.track.name}}</h2>
     <div style="border:solid 2px #000;line-height:250px;text-align:center">
         <a href="http://www.chartjs.org/docs/#line-chart">Joli graphique</a>
     </div>
     <!-- <canvas {{bind-attr id='track.id'}}></canvas> -->
 
-    <h3>Values</h3>
+    <h3 class="CardTitle">Values</h3>
     <table class="ValuesTable">
-        <tr ng-repeat="value in track.values">
+        <tr ng-repeat="value in trackCtrl.track.evolutions">
             <td>{{value}}</td><td>commentaire</td>
         </tr>
     </table>

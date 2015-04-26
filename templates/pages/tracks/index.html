@@ -1,8 +1,10 @@
 <div class="grid-3">
     <article class="Card" ng-repeat="track in indexCtrl.tracks">
-        <h3><a href="#/track/{{track.id}}">
-           {{track.name}}
-        </a></h3>
+        <h3 class="CardTitle">
+            <a href="#/track/{{track.id}}">
+               {{track.name}}
+            </a>
+        </h3>
         <!--<time {{bind-attr datetime='track.creationDate'}}>{{track.creationDate}}</time>-->
         <div style="border:solid 1px #000;line-height:250px;text-align:center">
             <a href="http://www.chartjs.org/docs/#line-chart">Joli graphique</a>

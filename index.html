@@ -6,8 +6,7 @@
         <title>Quantifier</title>
         <meta name="description" content="Quantifier, a quantified-self application">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="bower_components/knacss/css/knacss.css">
-        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/styles.min.css">
     </head>
 
     <body>
@@ -34,8 +33,7 @@
         <aside class="ToolbarContainer">
             <nav>
                 <ul class="Toolbar">
-                    <li class="ToolbarItem"><a href="#">+</a></li>
-                    <li class="ToolbarItem"><a href="#">…</a></li>
+                    <li class="ToolbarItem"><a href="#/track/new">+</a></li>
                 </ul>
             </nav>
         </aside>
@@ -46,10 +44,16 @@
 
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
+
         <script src="javascript/app.js"></script>
-        <script src="javascript/controllers/tracks-index-controller.js"></script>
-        <script src="javascript/controllers/track-add-controller.js"></script>
+        <script src="javascript/controllers/login-controller.js"></script>
+        <script src="javascript/controllers/proportion-new-controller.js"></script>
+        <script src="javascript/controllers/proportion-show-controller.js"></script>
+        <script src="javascript/controllers/proportions-index-controller.js"></script>
+        <script src="javascript/controllers/track-new-controller.js"></script>
         <script src="javascript/controllers/track-show-controller.js"></script>
+        <script src="javascript/controllers/tracks-index-controller.js"></script>
+
         <script src="bower_components/chartjs/Chart.js"></script>
     </body>
 </html>

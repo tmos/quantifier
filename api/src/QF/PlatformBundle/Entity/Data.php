@@ -85,7 +85,7 @@ abstract class Data
     /**
      * Set dateChosen
      *
-     * @param \DateTime $dateCreation
+     * @param \DateTime dateCreation
      * @return data
      */
     public function setDateChosen($dateChosen)

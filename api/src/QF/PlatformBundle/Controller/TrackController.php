@@ -38,7 +38,7 @@ class TrackController extends Controller
     /**
      * Finds a Track entity.
      *
-     * @Route("/track/{id}", name="track__show")
+     * @Route("/track/{id}", name="track__get")
      * @Method("GET")
      */
     public function getAction($id)
@@ -93,14 +93,14 @@ class TrackController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('track__show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('track__get', array('id' => $entity->getId())));
         }
     }
 
     /**
      * Edits an existing Track entity.
      *
-     * @Route("/track/{id}", name="track__update")
+     * @Route("/track/{id}", name="track__put")
      * @Method("PUT")
      */
     public function putAction(Request $request, $id)

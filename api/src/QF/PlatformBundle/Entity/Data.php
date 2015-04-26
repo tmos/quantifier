@@ -43,9 +43,9 @@ abstract class Data
     private $comment;
 
     /**
-    *  @ORM\ManyToOne(targetEntity="QF\PlatformBundle\Entity\Track", inversedBy="datas")
-    *  @ORM\JoinColumn(nullable=true)
-    */
+     * @ORM\ManyToOne(targetEntity="QF\PlatformBundle\Entity\Track", inversedBy="datas")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $track;
 
 
@@ -75,7 +75,7 @@ abstract class Data
     /**
      * Get dateCreation
      *
-     * @return \DateTime
+     * @return \DateTime $dateCreation
      */
     public function getDateCreation()
     {
@@ -85,7 +85,7 @@ abstract class Data
     /**
      * Set dateChosen
      *
-     * @param \DateTime dateCreation
+     * @param \DateTime
      * @return data
      */
     public function setDateChosen($dateChosen)
@@ -98,7 +98,7 @@ abstract class Data
     /**
      * Get dateChosen
      *
-     * @return \DateTime
+     * @return \DateTime $dateChosen
      */
     public function getDateChosen()
     {

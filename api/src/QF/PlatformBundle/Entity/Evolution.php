@@ -29,9 +29,9 @@ class Evolution extends Data
     private $value;
 
     /**
-    *  @ORM\ManyToOne(targetEntity="QF\PlatformBundle\Entity\Proportion", inversedBy="evolutions")
-    *  @ORM\JoinColumn(nullable=true)
-    */
+     * @ORM\ManyToOne(targetEntity="QF\PlatformBundle\Entity\Proportion", inversedBy="evolutions")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $proportion;
 
 

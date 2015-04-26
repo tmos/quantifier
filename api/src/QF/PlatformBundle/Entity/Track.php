@@ -51,13 +51,13 @@ class Track
     private $type;
 
     /**
-    *  @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Data", mappedBy="track")
-    */
+     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Data", mappedBy="track")
+     */
     private $datas;
 
     /**
-    *  Initialize data
-    */
+     *  Initialize data
+     */
     public function __construct()
     {
         $this->datas = new ArrayCollection();
@@ -167,11 +167,11 @@ class Track
     }
 
     /**
-    *  Add data
-    *
-    *  @param Data $data
-    *  @return Track
-    */
+     *  Add data
+     *
+     * @param Data $data
+     * @return Track
+     */
     public function addData(Data $data)
     {
         $this->datas[] = $data;
@@ -182,20 +182,20 @@ class Track
     }
 
     /**
-    *  Remove data
-    *
-    *  @param Data $data
-    */
+     *  Remove data
+     *
+     * @param Data $data
+     */
     public function removeData(Data $data)
     {
         $this->datas->removeElements($data);
     }
 
     /**
-    * Get All data
-    *
-    * @return Data[]
-    */
+     * Get All data
+     *
+     * @return Data[]
+     */
     public function getAllData()
     {
         return $this->datas;

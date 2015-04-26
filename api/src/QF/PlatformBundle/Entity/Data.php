@@ -24,9 +24,16 @@ abstract class Data
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="dateCreation", type="datetime")
      */
-    private $date;
+    private $dateCreation;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateChosen", type="datetime")
+     */
+    private $dateChosen;
 
     /**
      * @var string
@@ -53,26 +60,49 @@ abstract class Data
     }
 
     /**
-     * Set date
+     * Set dateCreation
      *
-     * @param \DateTime $date
+     * @param \DateTime $dateCreation
      * @return data
      */
-    public function setDate($date)
+    public function setDateCreation($dateCreation)
     {
-        $this->date = $date;
+        $this->dateCreation = $dateCreation;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get dateCreation
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getDateCreation()
     {
-        return $this->date;
+        return $this->dateCreation;
+    }
+
+    /**
+     * Set dateChosen
+     *
+     * @param \DateTime dateCreation
+     * @return data
+     */
+    public function setDateChosen($dateChosen)
+    {
+        $this->dateChosen = $dateChosen;
+
+        return $this;
+    }
+
+    /**
+     * Get dateChosen
+     *
+     * @return \DateTime
+     */
+    public function getDateChosen()
+    {
+        return $this->dateChosen;
     }
 
     /**

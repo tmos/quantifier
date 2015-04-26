@@ -2,7 +2,6 @@
 
 namespace QF\PlatformBundle\Controller;
 
-use Doctrine\Common\Proxy\Exception\InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;

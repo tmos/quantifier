@@ -30,7 +30,7 @@ class Proportion
     private $creator;
 
     /**
-     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Data", mappedBy="proportion")
+     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Evolution", mappedBy="proportion")
      */
     private $evolutions;
 

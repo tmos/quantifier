@@ -13,7 +13,7 @@ use QF\PlatformBundle\Form\EvolutionType;
 /**
  * Evolution controller.
  *
- * @Route("/evolution")
+ * @Route("/")
  */
 class EvolutionController extends Controller
 {
@@ -21,26 +21,26 @@ class EvolutionController extends Controller
     /**
      * Lists all Evolution entities.
      *
-     * @Route("/evolution", name="evolution__all")
+     * @Route("/evolutions/{id}", name="evolution__all")
      * @Method("GET")
-     * @Template()
      */
-    public function getAllAction()
+    public function getAllAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('QFPlatformBundle:Evolution')->findAll();
+        $track = $em->getRepository('QFPlatformBundle:Evolution')->find($id);
 
-        return array(
-            'entities' => $entities,
-        );
+        $entities = $track->getAllData();
+
+        $serializedEntity = $this->container->get('serializer')->serialize($entities, 'json');
+
+        return new Response($serializedEntity);
     }
 
     /**
-    /**
      * Finds a Track entity.
      *
-     * @Route("/evolution/{id}", name="evolution__get)
+     * @Route("/evolution/{id}", name="evolution__get")
      * @Method("GET")
      */
     public function getAction()

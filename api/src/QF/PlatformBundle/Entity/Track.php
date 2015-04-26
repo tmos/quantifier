@@ -51,9 +51,19 @@ class Track
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Data", mappedBy="track")
+     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Evolution", mappedBy="track")
      */
-    private $datas;
+    private $evolutions;
+
+    /**
+     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Listing", mappedBy="track")
+     */
+    private $listings;
+
+    /**
+     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Binaries", mappedBy="track")
+     */
+    private $binaries;
 
     /**
      *  Initialize data

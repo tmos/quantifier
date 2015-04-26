@@ -1,4 +1,4 @@
 angular.module('quantifier')
-    .controller('TrackNewController', function($http){
+    .controller('TrackNewController', function(){
 
     });

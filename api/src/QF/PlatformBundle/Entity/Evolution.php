@@ -24,7 +24,7 @@ class Evolution
     /**
      * @var string
      *
-     * @ORM\Column(name="value", type="decimal")
+     * @ORM\Column(name="value", type="decimal", precision=5, scale=2)
      */
     private $value;
 
@@ -45,7 +45,7 @@ class Evolution
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="string", length=512)
+     * @ORM\Column(name="comment", type="string", length=512, nullable=true)
      */
     private $comment;
 
@@ -56,7 +56,7 @@ class Evolution
     private $proportion;
 
     /**
-     * @ORM\ManyToOne(targetEntity="QF\PlatformBundle\Entity\Track", inversedBy="datas")
+     * @ORM\ManyToOne(targetEntity="QF\PlatformBundle\Entity\Track", inversedBy="evolutions")
      * @ORM\JoinColumn(nullable=true)
      */
     private $track;

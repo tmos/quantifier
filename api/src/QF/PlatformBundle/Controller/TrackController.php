@@ -13,14 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Track controller.
  *
- * @Route("/")
+ * @Route("/track")
  */
 class TrackController extends Controller
 {
     /**
      * Lists all Track entities.
      *
-     * @Route("/tracks", name="track__all")
+     * @Route("/", name="track__all")
      * @Method("GET")
      */
     public function getAllAction()
@@ -29,7 +29,62 @@ class TrackController extends Controller
 
         $entities = $em->getRepository('QFPlatformBundle:Track')->findAll();
 
-        $serializedEntity = $this->container->get('serializer')->serialize($entities, 'json');
+        $newEntities = array();
+
+        foreach ($entities as $entity) {
+            if ($entity->getType() == 0) {
+                $newEntity['id'] = $entity->getId();
+                $newEntity['name'] = $entity->getName();
+                $newEntity['creator'] = $entity->getCreator();
+                $newEntity['date'] = $entity->getDate();
+                $newEntity['type'] = $entity->getType();
+                $listData = $em->getRepository('QFPlatformBundle:Evolution')->findBy(
+                    array('track' => $entity),
+                    array('dateChosen' => 'asc'),
+                    10,
+                    0
+                );
+                $newListData = array();
+                foreach ($listData as $data) {
+                    $newListData[] = $data->getValue();
+                }
+                unset($newEntity['listings']);
+                unset($newEntity['binaries']);
+                $newEntity['evolutions'] = $newListData;
+                $newEntities[] = $newEntity;
+            } else if ($entity->getType() == 1){
+                $newEntity['id'] = $entity->getId();
+                $newEntity['name'] = $entity->getName();
+                $newEntity['creator'] = $entity->getCreator();
+                $newEntity['date'] = $entity->getDate();
+                $newEntity['type'] = $entity->getType();
+                unset($newEntity['evolutions']);
+                unset($newEntity['binaries']);
+                $newEntities[] = $newEntity;
+            } else {
+                $newEntity['id'] = $entity->getId();
+                $newEntity['name'] = $entity->getName();
+                $newEntity['creator'] = $entity->getCreator();
+                $newEntity['date'] = $entity->getDate();
+                $newEntity['type'] = $entity->getType();
+                $listData = $em->getRepository('QFPlatformBundle:Evolution')->findBy(
+                    array('track' => $entity),
+                    array('dateChosen' => 'asc'),
+                    10,
+                    0
+                );
+                $newListData = array();
+                foreach ($listData as $data) {
+                    $newListData[] = $data->getDateChosen();
+                }
+                unset($newEntity['evolutions']);
+                unset($newEntity['listings']);
+                $newEntity['binaries'] = $newListData;
+                $newEntities[] = $newEntity;
+            }
+        }
+
+        $serializedEntity = $this->container->get('serializer')->serialize($newEntities, 'json');
 
         return new Response($serializedEntity);
     }
@@ -37,7 +92,7 @@ class TrackController extends Controller
     /**
      * Finds a Track entity.
      *
-     * @Route("/track/{id}", name="track__get")
+     * @Route("/{id}", name="track__get")
      * @Method("GET")
      */
     public function getAction($id)
@@ -58,48 +113,60 @@ class TrackController extends Controller
     /**
      * Creates a new Track entity.
      *
-     * @Route("/track", name="track__create")
+     * @Route("/", name="track__create")
      * @Method("POST")
      */
     public function postAction(Request $request)
     {
         $entity = new Track();
 
+        $test = true;
+        $message = "";
+
         if ($request->getMethod() == 'POST') {
             $date = new \DateTime();
             if ($request->get('name') != "") {
                 $entity->setName($request->get('name'));
             } else {
-                throw new \Exception("Name empty");
+                $test = false;
+                $message = "Name empty";
             }
             if ($request->get('creator') != "") {
                 $entity->setCreator($request->get('creator'));
             } else {
-                throw new \Exception("Creator empty");
-            }
-            if ($request->get('date') != "") {
-                $entity->setDate($date->setTimestamp($request->get('date')));
-            } else {
-                throw new \Exception("Date empty");
+                $test = false;
+                $message = "Creator is empty";
             }
             if ($request->get('type') != "") {
                 $entity->setType($request->get('type'));
             } else {
-                throw new \Exception("Type empty");
+                $test = false;
+                $message = "Type is empty";
             }
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+            $entity->setDate(new \DateTime());
 
-            return $this->redirect($this->generateUrl('track__get', array('id' => $entity->getId())));
+            if ($test) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($entity);
+                $em->flush();
+            }
+
+            $worked = array(
+                "isSuccessful" => $test,
+                "message" => $message
+            );
+
+            $serializedEntity = $this->container->get('serializer')->serialize($worked, 'json');
+
+            return new Response($serializedEntity);
         }
     }
 
     /**
      * Edits an existing Track entity.
      *
-     * @Route("/track/{id}", name="track__put")
+     * @Route("/{id}", name="track__put")
      * @Method("PUT")
      */
     public function putAction(Request $request, $id)
@@ -108,11 +175,15 @@ class TrackController extends Controller
 
         $entity = $em->getRepository('QFPlatformBundle:Track')->find($id);
 
+        $test = true;
+        $message = "";
+
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Track entity.');
+            $test = false;
+            $message = "Unable to find Track entity";
         }
 
-        if ($request->getMethod() == "PUT") {
+        if ($request->getMethod() == "PUT" && $test) {
             $changed = false;
             if ($request->get('name') != "" && $request->get('name') != $entity->getName()) {
                 $entity->setName($request->get('name'));
@@ -124,41 +195,46 @@ class TrackController extends Controller
                 $em->persist($entity);
                 $em->flush();
             }
-
-            $worked = array(
-                'isSuccesful' => 1
-            );
-
-            $serializedEntity = $this->container->get('serializer')->serialize($worked, 'json');
-
-            return new Response($serializedEntity);
         }
+
+        $worked = array(
+            'isSuccesful' => $test,
+            'message' => $message
+        );
+
+        $serializedEntity = $this->container->get('serializer')->serialize($worked, 'json');
+
+        return new Response($serializedEntity);
 
     }
 
     /**
      * Deletes a Track entity.
      *
-     * @Route("/track/{id}", name="track__delete")
+     * @Route("/{id}", name="track__delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {
 
         $em = $this->getDoctrine()->getManager();
+
         $entity = $em->getRepository('QFPlatformBundle:Track')->find($id);
 
+        $test = true;
+        $message = "";
+
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Track entity.');
+            $test = false;
+            $message = "Unable to find Track entity";
+        } else {
+            $em->remove($entity);
+            $em->flush();
         }
 
-        $em->remove($entity);
-        $em->flush();
-
-
-
         $worked = array(
-            'isSuccesful' => 1
+            'isSuccesful' => $test,
+            'message' => $message
         );
 
         $serializedEntity = $this->container->get('serializer')->serialize($worked, 'json');

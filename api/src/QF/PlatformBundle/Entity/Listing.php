@@ -26,13 +26,6 @@ class Listing
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="value", type="string", length=255)
-     */
     private $value;
 
     /**
@@ -52,7 +45,7 @@ class Listing
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="string", length=512)
+     * @ORM\Column(name="comment", type="string", length=512, nullable=true)
      */
     private $comment;
 
@@ -140,29 +133,6 @@ class Listing
     public function getComment()
     {
         return $this->comment;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return list
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**

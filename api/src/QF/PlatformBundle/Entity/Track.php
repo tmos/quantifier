@@ -51,26 +51,29 @@ class Track
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Evolution", mappedBy="track")
+     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Evolution", mappedBy="track", cascade={"persist", "remove"})
      */
     private $evolutions;
 
     /**
-     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Listing", mappedBy="track")
+     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Listing", mappedBy="track", cascade={"persist", "remove"})
      */
     private $listings;
 
     /**
-     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Binaries", mappedBy="track")
+     * @ORM\OneToMany(targetEntity="QF\PlatformBundle\Entity\Binaries", mappedBy="track", cascade={"persist", "remove"})
      */
     private $binaries;
+
 
     /**
      *  Initialize data
      */
     public function __construct()
     {
-        $this->datas = new ArrayCollection();
+        $this->evolutions = new ArrayCollection();
+        $this->listings = new ArrayCollection();
+        $this->binaries = new ArrayCollection();
     }
 
 
@@ -239,7 +242,7 @@ class Track
     /**
      * Get All data
      *
-     * @return Data[]
+     * @return Listing[]
      */
     public function getListings()
     {

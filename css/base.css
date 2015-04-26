@@ -1,0 +1,21 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,700italic,400italic);
+
+html {
+    height: 100%;
+}
+body {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    font-size: 1.6em;
+    font-family: 'Open Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.hidden {
+    display: none;
+}

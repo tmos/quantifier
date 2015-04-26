@@ -1,0 +1,19 @@
+body {
+    background-color: #fff;
+    color: #222;
+}
+
+a {
+    color: #4A92CC;
+}
+
+a:hover,
+a:active,
+a:focus {
+    color: #254966;
+}
+
+.Header,
+.Footer {
+    color: #eee;
+}

@@ -1,0 +1,5 @@
+{
+  "in": ["../bower_components/knacss/css/knacss-unminified.css", "base.css", "layout.css", "colors.css", "objects.css"],
+  "out": "styles.min.css",
+  "browsers": ["last 3 versions"]
+}

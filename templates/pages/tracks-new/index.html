@@ -1,4 +1,4 @@
-<form name="newTrack">
+<form name="newTrack" class="CenterForm fullWidth">
     <label for="trackTitle" class="hidden">Track title</label>
     <input type="text" name="creator" ng-model="newCtrl.track.creator" placeholder="Creator"/>
     <input type="text" name="name" id="trackTitle" placeholder="Track title" ng-model="newCtrl.track.name"/>
@@ -7,5 +7,5 @@
         <option value="1">List</option>
         <option value="2">Binary</option>
     </select>
-    <input type="submit" ng-click="newCtrl.create(newCtrl.track)"/>
+    <input class="Btn" type="submit" ng-click="newCtrl.create(newCtrl.track)"/>
 </form>

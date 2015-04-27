@@ -77,11 +77,12 @@
     text-transform: capitalize;
 }
 
-.CardAddValue {
+.Btn.CardAddValue {
     width: 100%;
     background: #FF3709;
     color: #FFF;
     padding: 1rem;
+    border-radius: 0 0 2px 2px;
 }
 
 .Footer {

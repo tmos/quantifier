@@ -1,7 +1,7 @@
 angular.module('quantifier')
     .controller('TracksIndexController', function($http){
         var controller = this;
-        $http({method:'GET', url:'api/web/api/tracks'})
+        $http({method:'GET', url:'api/web/api/track/'})
             .success(function(data){
                 controller.tracks = data;
             })

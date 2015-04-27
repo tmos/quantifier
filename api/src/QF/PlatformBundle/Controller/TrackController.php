@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Track controller.
  *
- * @Route("/track")
+ * @Route("/track/")
  */
 class TrackController extends Controller
 {
@@ -124,7 +124,6 @@ class TrackController extends Controller
         $message = "";
 
         if ($request->getMethod() == 'POST') {
-            $date = new \DateTime();
             if ($request->get('name') != "") {
                 $entity->setName($request->get('name'));
             } else {

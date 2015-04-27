@@ -1,10 +1,11 @@
 <form name="newTrack">
     <label for="trackTitle" class="hidden">Track title</label>
-    <input type="text" name="name" id="trackTitle" placeholder="Track title" ng-model="newCtrl.track.title"/>
-    <select name="type" id="dataType" ng-model="newCtrl.track.type">
-        <option value="Proportion">Proportion</option>
-        <option value="List">List</option>
-        <option value="Binary">Binary</option>
+    <input type="text" name="creator" ng-model="newCtrl.track.creator" placeholder="Creator"/>
+    <input type="text" name="name" id="trackTitle" placeholder="Track title" ng-model="newCtrl.track.name"/>
+    <select ng-model="newCtrl.track.type">
+        <option value="0">Evolution</option>
+        <option value="1">List</option>
+        <option value="2">Binary</option>
     </select>
     <input type="submit" ng-click="newCtrl.create(newCtrl.track)"/>
 </form>

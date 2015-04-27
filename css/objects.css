@@ -161,9 +161,14 @@ input[type="password"] {
 }
 
 /** Forms */
-.LoginForm {
+
+.CenterForm {
     max-width: 370px;
     margin: 0 auto;
+}
+.CenterForm.fullWidth > *{
+    width:100%;
+    margin-bottom: .5rem;
 }
 
 .LoginForm-input {

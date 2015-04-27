@@ -7,12 +7,5 @@ angular.module('quantifier')
             })
             .error(function(){
                 controller.tracks = JSON.parse('[{"id":16,"name":"Whisky drunk","creator":"Spieldy","date":"2015-04-25T17:20:48-0400","type":0,"evolutions":[],"listings":[],"binaries":[]},{"id":17,"name":"Hour worked on Quantifier","creator":"Tom","date":"2015-04-25T17:20:48-0400","type":0,"evolutions":[1,2,3,4,5],"listings":[],"binaries":[]},{"id":18,"name":"KM run","creator":"Spieldy","date":"2015-04-24T14:50:30-0400","type":0,"evolutions":[1,2,3,4,6,9,3,8,8,7,6],"listings":[],"binaries":[]}]');
-                //for(i = 0; i < controller.tracks.length; i++) {
-                //    var currentTrack = controller.tracks[i];
-                //    var domId = "#graph" + currentTrack.id;
-                //    console.log(document.querySelector(domId));
-                //    var ctx = document.getElementById(domId).getContext("2d");
-                //    var myNewChart = new Chart(ctx).PolarArea(currentTrack.evolutions);
-                //}
             });
     });

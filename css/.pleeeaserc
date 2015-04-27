@@ -5,7 +5,8 @@
 	"layout.css",
 	"colors.css",
 	"objects.css",
-	"../bower_components/angular-chart.js/dist/angular-chart.css"
+	"../bower_components/sweetalert/dist/sweetalert.css",
+	"../bower_components/font-awesome/css/font-awesome.min.css"
 ],
   "out": "styles.min.css",
   "browsers": ["last 3 versions"]

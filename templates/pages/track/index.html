@@ -13,3 +13,14 @@
         </tr>
     </table>
 </div>
+
+<!-- Refactor in a directive -->
+<aside class="ToolbarContainer">
+    <nav>
+        <ul class="Toolbar">
+            <li ng-if="trackCtrl.track.type == 0" class="ToolbarItem"><a href="#/data/new/evolution">+</a></li>
+            <li ng-if="trackCtrl.track.type == 1" class="ToolbarItem"><a href="#/data/new/list">+</a></li>
+            <li ng-if="trackCtrl.track.type == 2" class="ToolbarItem"><a href="#/data/new/binary">+</a></li>
+        </ul>
+    </nav>
+</aside>

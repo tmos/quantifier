@@ -15,6 +15,9 @@ body {
 a {
     text-decoration: none;
 }
+a[ng-click]{
+    cursor: pointer;
+}
 
 .hidden {
     display: none;

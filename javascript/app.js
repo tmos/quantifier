@@ -40,6 +40,22 @@ angular.module('quantifier', ['ngRoute'])
                 controller:'TrackNewController',
                 controllerAs:'newCtrl'
             })
+            /* Data */
+            .when('/data/new/evolution', {
+                templateUrl: 'templates/pages/data-new/evolution',
+                controller: 'DataNewController',
+                controllerAs:'dataCtrl'
+            })
+            .when('/data/new/binary', {
+                templateUrl: 'templates/pages/data-new/binary',
+                controller: 'NewDataController',
+                controllerAs:'dataCtrl'
+            })
+            .when('/data/new/list', {
+                templateUrl: 'templates/pages/data-new/evolution',
+                controller: 'NewDataController',
+                controllerAs:'dataCtrl'
+            })
             /* Settings */
             .when('/settings', {
                 templateUrl: 'templates/pages/settings/index.html',
@@ -47,7 +63,10 @@ angular.module('quantifier', ['ngRoute'])
                 controllerAs:'settingsCtrl'
             })
             /* Meta */
+            .when('/', {
+                redirectTo:'/tracks'
+            })
             .otherwise({
-                redirectTo:'/'
+                redirectTo:'/tracks'
             });
     }]);

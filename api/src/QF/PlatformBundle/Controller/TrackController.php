@@ -34,7 +34,7 @@ class TrackController extends Controller
         foreach ($entities as $entity) {
             if ($entity->getType() == 0) {
                 $newEntity['id'] = $entity->getId();
-                $newEntity['name'] = $entity->getName();
+                $newEntity['title'] = $entity->getName();
                 $newEntity['creator'] = $entity->getCreator();
                 $newEntity['date'] = $entity->getDate();
                 $newEntity['type'] = $entity->getType();
@@ -54,7 +54,7 @@ class TrackController extends Controller
                 $newEntities[] = $newEntity;
             } else if ($entity->getType() == 1){
                 $newEntity['id'] = $entity->getId();
-                $newEntity['name'] = $entity->getName();
+                $newEntity['title'] = $entity->getName();
                 $newEntity['creator'] = $entity->getCreator();
                 $newEntity['date'] = $entity->getDate();
                 $newEntity['type'] = $entity->getType();
@@ -63,7 +63,7 @@ class TrackController extends Controller
                 $newEntities[] = $newEntity;
             } else {
                 $newEntity['id'] = $entity->getId();
-                $newEntity['name'] = $entity->getName();
+                $newEntity['title'] = $entity->getName();
                 $newEntity['creator'] = $entity->getCreator();
                 $newEntity['date'] = $entity->getDate();
                 $newEntity['type'] = $entity->getType();
@@ -124,11 +124,11 @@ class TrackController extends Controller
         $message = "";
 
         if ($request->getMethod() == 'POST') {
-            if ($request->get('name') != "") {
-                $entity->setName($request->get('name'));
+            if ($request->get('title') != "") {
+                $entity->setName($request->get('title'));
             } else {
                 $test = false;
-                $message = "Name empty";
+                $message = "Title empty";
             }
             if ($request->get('creator') != "") {
                 $entity->setCreator($request->get('creator'));
@@ -184,8 +184,8 @@ class TrackController extends Controller
 
         if ($request->getMethod() == "PUT" && $test) {
             $changed = false;
-            if ($request->get('name') != "" && $request->get('name') != $entity->getName()) {
-                $entity->setName($request->get('name'));
+            if ($request->get('title') != "" && $request->get('title') != $entity->getName()) {
+                $entity->setName($request->get('title'));
                 $changed = true;
             }
 

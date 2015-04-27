@@ -8,8 +8,8 @@
 
     <h3 class="CardTitle">Values</h3>
     <table class="ValuesTable">
-        <tr ng-repeat="value in trackCtrl.track.evolutions">
-            <td>{{value}}</td><td>commentaire</td>
+        <tr ng-repeat="evolution in trackCtrl.track.evolutions">
+            <td>{{evolution.value}}</td><td>{{evolution.comment}}</td>
         </tr>
     </table>
 </div>

@@ -1,13 +1,14 @@
 {
   "in": [
 	"../bower_components/knacss/css/knacss-unminified.css",
+	"../bower_components/font-awesome/css/font-awesome.min.css",
+	"../bower_components/sweetalert/dist/sweetalert.css",
 	"base.css",
 	"layout.css",
 	"colors.css",
 	"objects.css",
 	"menu.css",
-	"../bower_components/sweetalert/dist/sweetalert.css",
-	"../bower_components/font-awesome/css/font-awesome.min.css"
+	"sweet-quantifier.css"
 ],
   "out": "styles.min.css",
   "browsers": ["last 3 versions"]

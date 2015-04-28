@@ -1,5 +1,5 @@
 body {
-    background-color: #fff;
+    background-color: #F3F3F3;
     color: #222;
 }
 
@@ -16,4 +16,20 @@ a:focus {
 .Header,
 .Footer {
     color: #eee;
+}
+
+.Card {
+    background-color: #fff;
+}
+
+.Btn.CardAddValue {
+    background: #FF3709;
+}
+
+.Footer {
+    background-color: #254966;
+}
+
+.Toolbar {
+    background-color: #EF2D00;
 }

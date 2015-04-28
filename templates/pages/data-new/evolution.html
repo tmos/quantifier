@@ -1,7 +1,8 @@
 <form name="newTrack" class="CenterForm fullWidth">
-    <input type="number" id="trackNewValue" value="0" ng-model="dataCtrl.data.title"/>
+    <label for="trackNewValue">Value :</label>
+    <input type="number" id="trackNewValue" value="0" ng-model="dataCtrl.data.title" />
     <br/>
-    <input class="Btn" type="submit" ng-click="dataCtrl.create(dataCtrl.data)"/>
+    <input class="Btn" type="submit" ng-click="dataCtrl.create(dataCtrl.data)" value="Create"/>
 </form>
 
 <!-- Refactor in a directive -->

@@ -41,17 +41,17 @@ angular.module('quantifier', ['ngRoute'])
                 controllerAs:'newCtrl'
             })
             /* Data */
-            .when('/data/new/evolution', {
+            .when('/track/:id/new/0', {
                 templateUrl: 'templates/pages/data-new/evolution',
                 controller: 'DataNewController',
                 controllerAs:'dataCtrl'
             })
-            .when('/data/new/binary', {
+            .when('/track/:id/new/1', {
                 templateUrl: 'templates/pages/data-new/binary',
                 controller: 'NewDataController',
                 controllerAs:'dataCtrl'
             })
-            .when('/data/new/list', {
+            .when('/track/:id/new/2', {
                 templateUrl: 'templates/pages/data-new/evolution',
                 controller: 'NewDataController',
                 controllerAs:'dataCtrl'

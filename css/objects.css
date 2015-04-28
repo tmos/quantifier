@@ -12,46 +12,6 @@
     padding: 0;
 }
 
-.Menu > * {
-    line-height: 64px;
-}
-
-.Menu {
-    background-color: #4A92CC;
-    height: 64px;
-}
-
-.Menu a {
-    color: #FFF;
-}
-
-.Menu-AppTitle {
-    float: left;
-    padding-left: 1rem;
-}
-
-.Menu-ul {
-    margin-top: 0;
-    list-style: none;
-    display: table;
-    float: right;
-}
-
-.MenuItem {
-    float: left;
-    padding: 0 1rem;
-}
-
-.MenuItem a {
-    display: block;
-}
-
-.MenuItem:hover,
-.MenuItem:active,
-.MenuItem:focus {
-    background-color: rgba(255, 255, 255, .3);
-}
-
 .Main {
     margin: 0;
     padding: 2rem 2rem 12rem 2rem;
@@ -78,11 +38,14 @@
 }
 
 .Btn.CardAddValue {
+    display: block;
+    text-align: center;
     width: 100%;
     background: #FF3709;
     color: #FFF;
     padding: 1rem;
     border-radius: 0 0 2px 2px;
+    bottom:0;
 }
 
 .Footer {

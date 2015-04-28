@@ -1,0 +1,55 @@
+.Menu {
+    background-color: #4A92CC;
+    height: 64px;
+}
+
+.Menu a {
+    color: #FFF;
+}
+
+.Menu-AppTitle {
+    float: left;
+    padding-left: 1rem;
+}
+
+.Menu-ul,
+.Menu-AppTitle {
+    line-height: 64px;
+}
+.Menu-ul {
+    margin-top: 0;
+    list-style: none;
+    display: table;
+    float: right;
+}
+
+.MenuItem {
+    float: left;
+    padding: 0 1rem;
+}
+
+.MenuItem a {
+    display: block;
+}
+
+.MenuItem:hover,
+.MenuItem:active,
+.MenuItem:focus {
+    background-color: rgba(255, 255, 255, .3);
+}
+
+@media(max-width: 760px) {
+    .MenuItem,
+    .Menu-AppTitle,
+    .Menu-ul {
+        float: none;
+        text-align: center;
+    }
+    .Menu-ul {
+        width:100%;
+        padding-left: 0;
+    }
+    .Menu {
+        height: inherit;
+    }
+}

@@ -1,7 +1,12 @@
 angular.module('quantifier')
     .controller('TrackNewController', function($http) {
         this.create = function (track) {
-            $http({method: 'POST', url: 'api/web/api/track/', data: JSON.stringify(this.track)})
+            $http({
+                url: 'api/web/api/track/',
+                method: "POST",
+                data: serializeData(track),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
                 .success(function (data) {
                     console.log(data);
                 })

@@ -1,7 +1,25 @@
 angular.module('quantifier')
-    .controller('DataNewController', function () {
-        controller = this;
-        controller .dateChosen = new Date();
+    .controller('DataNewController', function ($http, $routeParams) {
+        var controller = this;
+        this.create = function (data) {
+            data.type = "0";
+            console.log(data);
+            $http({
+                url: 'api/web/api/evolution/' + $routeParams.id,
+                method: "POST",
+                data: serializeData(controller.theData),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+                .success(function (data) {
+                    console.log(data);
+                })
+                .error(function () {
+
+                });
+
+        }
+/*
+        controller.data.dateChosen = new Date();
         this.changeDate = function () {
             swal({
                 title: "Date",
@@ -37,16 +55,5 @@ angular.module('quantifier')
                 }
                 controller.comment = inputValue;
             });
-        };
-
-        this.create = function (track) {
-            $http({method: 'POST', url: 'api/web/api/data', data: controller.data})
-                .success(function (data) {
-                    console.log(data);
-                })
-                .error(function () {
-
-                });
-        }
-
+        };*/
     });

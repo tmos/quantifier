@@ -1,0 +1,14 @@
+<form name="newTrack" class="CenterForm fullWidth">
+    <input class="Btn" type="submit" ng-click="dataCtrl.create(dataCtrl.theData)" value="I did it !"/>
+</form>
+
+<!-- Refactor in a directive -->
+
+<aside class="ToolbarContainer">
+    <nav>
+        <ul class="Toolbar">
+            <li class="ToolbarItem"><a ng-click="dataCtrl.changeDate(dataCtrl.theData)"><i class="fa fa-calendar"></i></a></li>
+            <li class="ToolbarItem"><a ng-click="dataCtrl.comment(dataCtrl.theData)"><i class="fa fa-comment"></i></a></li>
+        </ul>
+    </nav>
+</aside>

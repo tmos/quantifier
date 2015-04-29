@@ -42,18 +42,18 @@ angular.module('quantifier', ['ngRoute'])
             })
             /* Data */
             .when('/track/:id/new/0', {
-                templateUrl: 'templates/pages/data-new/evolution.html',
-                controller: 'DataNewController',
+                templateUrl: 'templates/pages/records-views/evolution-new.html',
+                controller: 'EvolutionNewController',
                 controllerAs: 'dataCtrl'
             })
             .when('/track/:id/new/1', {
-                templateUrl: 'templates/pages/data-new/binary.html',
-                controller: 'DataNewController',
+                templateUrl: 'templates/pages/records-views/list-new.html',
+                controller: 'ListNewController',
                 controllerAs: 'dataCtrl'
             })
             .when('/track/:id/new/2', {
-                templateUrl: 'templates/pages/data-new/evolution.html',
-                controller: 'DataNewController',
+                templateUrl: 'templates/pages/records-views/binary-new.html',
+                controller: 'BinaryNewController',
                 controllerAs: 'dataCtrl'
             })
             /* Settings */

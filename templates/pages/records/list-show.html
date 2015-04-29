@@ -1,19 +1,10 @@
 <div class="TrackVisualisation Presentation">
     <h2>{{trackCtrl.track.name}}</h2>
 
-    <div style="border:solid 2px #000;line-height:250px;text-align:center">
-        <a href="http://www.chartjs.org/docs/#line-chart">Joli graphique</a>
-    </div>
-
-    <!-- <canvas {{bind-attr id='track.id'}}></canvas> -->
-
-    <h3 class="CardTitle">Values</h3>
     <table class="ValuesTable">
-        <tr ng-repeat="evolution in trackCtrl.track.evolutions">
-            <td>{{evolution.value}}</td>
-            <td>{{evolution.date_chosen | date}}</td>
-            <td>{{evolution.comment}}</td>
-        </tr>
+        <ul ng-repeat="evolution in trackCtrl.track.listings">
+            <li>{{evolution.value}}</li>
+        </ul>
     </table>
 </div>
 
@@ -21,7 +12,10 @@
 <aside class="ToolbarContainer">
     <nav>
         <ul class="Toolbar">
-            <li class="ToolbarItem"><a href="#/track/{{trackCtrl.track.id}}/new/{{trackCtrl.track.type}}">+</a></li>
+            <li class="ToolbarItem"><a href="#/track/{{trackCtrl.track.type}}/{{trackCtrl.track.id}}/new"><i class="fa fa-plus-square-o"></i>
+            </a></li>
+            <li class="ToolbarItem"><a ng-click="trackCtrl.delete()"><i class="fa fa-trash-o"></i>
+            </a></li>
         </ul>
     </nav>
 </aside>

@@ -12,7 +12,10 @@
 <aside class="ToolbarContainer">
     <nav>
         <ul class="Toolbar">
-            <li class="ToolbarItem"><a href="#/track/{{trackCtrl.track.id}}/new/{{trackCtrl.track.type}}">+</a></li>
+            <li class="ToolbarItem"><a href="#/track/{{trackCtrl.track.type}}/{{trackCtrl.track.id}}/new"><i class="fa fa-plus-square-o"></i>
+            </a></li>
+            <li class="ToolbarItem"><a ng-click="trackCtrl.delete()"><i class="fa fa-trash-o"></i>
+            </a></li>
         </ul>
     </nav>
 </aside>

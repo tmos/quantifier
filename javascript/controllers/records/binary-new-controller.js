@@ -30,7 +30,7 @@ angular.module('quantifier')
                 title: "Date",
                 text: "Set the date of your record",
                 type: "input",
-                inputType: "date",
+                inputType:"date",
                 showCancelButton: true,
                 animation: "slide-from-top"
             }, function (inputValue) {
@@ -39,7 +39,7 @@ angular.module('quantifier')
                     swal.showInputError("You need to write something!");
                     return false
                 }
-                data.dateChosen = inputValue;
+                data.dateChosen = Math.floor(new Date(inputValue) / 1000);
             });
         };
 

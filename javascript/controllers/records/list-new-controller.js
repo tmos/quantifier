@@ -1,17 +1,18 @@
 angular.module('quantifier')
     .controller('ListNewController', function ($http, $routeParams) {
         var controller = this;
-        var customDate = this.customDate;
 
         this.create = function (data) {
-            data.type = "1";
+            data.type = "0";
 
-            if (dateChosen.dateChosen === undefined) {
-                data.dateChosen = customDate;
+            if (data.dateChosen === undefined) {
+                data.dateChosen = Math.floor(Date.now() / 1000);
+                console.log(data.dateChosen);
+
             }
             console.log(data);
             $http({
-                url: 'api/web/api/list/' + $routeParams.id,
+                url: 'api/web/api/listing/' + $routeParams.id,
                 method: "POST",
                 data: serializeData(controller.theData),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -39,7 +40,7 @@ angular.module('quantifier')
                     swal.showInputError("You need to write something!");
                     return false
                 }
-                data.dateChosen = inputValue;
+                data.dateChosen = Math.floor(new Date(inputValue) / 1000);
             });
         };
 

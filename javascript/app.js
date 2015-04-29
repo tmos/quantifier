@@ -48,7 +48,7 @@ angular.module('quantifier', ['ngRoute'])
             })
             .when('/track/:id/new/1', {
                 templateUrl: 'templates/pages/data-new/binary.html',
-                controller: 'NewDataController',
+                controller: 'DataNewController',
                 controllerAs: 'dataCtrl'
             })
             .when('/track/:id/new/2', {

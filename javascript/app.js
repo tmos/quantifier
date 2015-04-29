@@ -3,65 +3,66 @@ angular.module('quantifier', ['ngRoute'])
         $routeProvider
             /* User relative */
             .when('/login', {
-                templateUrl: 'templates/pages/login/index.html'
+                templateUrl: 'templates/pages/meta-views/login.html'
             })
             .when('/register', {
-                templateUrl: 'templates/pages/register/index.html'
+                templateUrl: 'templates/pages/meta-views/register.html'
             })
+            .when('/settings', {
+                templateUrl: 'templates/pages/meta-views/settings.html'
+            })
+
             /* Tracks */
             .when('/tracks', {
-                templateUrl: 'templates/pages/tracks/index.html',
+                templateUrl: 'templates/pages/tracks/tracks-list.html',
                 controller: 'TracksIndexController',
                 controllerAs: 'indexCtrl'
             })
             .when('/track/:id', {
-                templateUrl: 'templates/pages/track/index.html',
+                templateUrl: 'templates/pages/tracks/track-show.html',
                 controller: 'TrackShowController',
                 controllerAs: 'trackCtrl'
             })
             .when('/tracks/new', {
-                templateUrl: 'templates/pages/tracks-new/index.html',
+                templateUrl: 'templates/pages/tracks/track-new.html',
                 controller: 'TrackNewController',
                 controllerAs: 'newCtrl'
             })
+
             /* Proportions */
             .when('/proportions', {
-                templateUrl: 'templates/pages/proportions/index.html',
+                templateUrl: 'templates/pages/proportions/proportions-list.html',
                 controller: 'ProportionsIndexController',
                 controllerAs: 'indexCtrl'
             })
             .when('/proportion/:id', {
-                templateUrl: 'templates/pages/proportion/index.html',
+                templateUrl: 'templates/pages/proportions/proportions-show.html',
                 controller: 'ProportionShowController',
                 controllerAs: 'proportionCtrl'
             })
             .when('/proportions/new', {
-                templateUrl: 'templates/pages/proportions-new/index.html',
+                templateUrl: 'templates/pages/proportions/proportions-new.html',
                 controller: 'TrackNewController',
                 controllerAs: 'newCtrl'
             })
+
             /* Data */
             .when('/track/:id/new/0', {
-                templateUrl: 'templates/pages/records-views/evolution-new.html',
+                templateUrl: 'templates/pages/records/evolution-new.html',
                 controller: 'EvolutionNewController',
                 controllerAs: 'dataCtrl'
             })
             .when('/track/:id/new/1', {
-                templateUrl: 'templates/pages/records-views/list-new.html',
+                templateUrl: 'templates/pages/records/list-new.html',
                 controller: 'ListNewController',
                 controllerAs: 'dataCtrl'
             })
             .when('/track/:id/new/2', {
-                templateUrl: 'templates/pages/records-views/binary-new.html',
+                templateUrl: 'templates/pages/records/binary-new.html',
                 controller: 'BinaryNewController',
                 controllerAs: 'dataCtrl'
             })
-            /* Settings */
-            .when('/settings', {
-                templateUrl: 'templates/pages/settings/index.html',
-                controller: 'SettingsNewController',
-                controllerAs: 'settingsCtrl'
-            })
+
             /* Meta */
             .when('/', {
                 redirectTo: '/tracks'

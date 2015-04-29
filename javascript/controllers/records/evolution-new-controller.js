@@ -7,6 +7,8 @@ angular.module('quantifier')
 
             if (data.dateChosen === undefined) {
                 data.dateChosen = Math.floor(Date.now() / 1000);
+                console.log(data.dateChosen);
+
             }
             console.log(data);
             $http({
@@ -38,7 +40,7 @@ angular.module('quantifier')
                     swal.showInputError("You need to write something!");
                     return false
                 }
-                data.dateChosen = inputValue;
+                data.dateChosen = Math.floor(new Date(inputValue) / 1000);
             });
         };
 

@@ -1,0 +1,18 @@
+<div class="TrackVisualisation Presentation">
+    <h2>{{trackCtrl.track.name}}</h2>
+    <table class="ValuesTable">
+        <tr ng-repeat="evolution in trackCtrl.track.binaries">
+            <td>{{evolution.date_chosen | date}}</td>
+            <td>{{evolution.comment}}</td>
+        </tr>
+    </table>
+</div>
+
+<!-- Refactor in a directive -->
+<aside class="ToolbarContainer">
+    <nav>
+        <ul class="Toolbar">
+            <li class="ToolbarItem"><a href="#/track/{{trackCtrl.track.id}}/new/{{trackCtrl.track.type}}">+</a></li>
+        </ul>
+    </nav>
+</aside>

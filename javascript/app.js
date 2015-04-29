@@ -18,15 +18,25 @@ angular.module('quantifier', ['ngRoute'])
                 controller: 'TracksIndexController',
                 controllerAs: 'indexCtrl'
             })
-            .when('/track/:id', {
-                templateUrl: 'templates/pages/tracks/track-show.html',
-                controller: 'TrackShowController',
-                controllerAs: 'trackCtrl'
-            })
             .when('/tracks/new', {
                 templateUrl: 'templates/pages/tracks/track-new.html',
                 controller: 'TrackNewController',
                 controllerAs: 'newCtrl'
+            })
+            .when('/track/0/:id', {
+                templateUrl: 'templates/pages/records/evolution-show.html',
+                controller: 'EvolutionShowController',
+                controllerAs: 'trackCtrl'
+            })
+            .when('/track/1/:id', {
+                templateUrl: 'templates/pages/records/list-show.html',
+                controller: 'TrackShowController',
+                controllerAs: 'trackCtrl'
+            })
+            .when('/track/2/:id', {
+                templateUrl: 'templates/pages/records/binary-show.html',
+                controller: 'TrackShowController',
+                controllerAs: 'trackCtrl'
             })
 
             /* Proportions */
@@ -47,17 +57,17 @@ angular.module('quantifier', ['ngRoute'])
             })
 
             /* Data */
-            .when('/track/:id/new/0', {
+            .when('/track/0/:id/new', {
                 templateUrl: 'templates/pages/records/evolution-new.html',
                 controller: 'EvolutionNewController',
                 controllerAs: 'dataCtrl'
             })
-            .when('/track/:id/new/1', {
+            .when('/track/1/:id/new', {
                 templateUrl: 'templates/pages/records/list-new.html',
                 controller: 'ListNewController',
                 controllerAs: 'dataCtrl'
             })
-            .when('/track/:id/new/2', {
+            .when('/track/2/:id/new', {
                 templateUrl: 'templates/pages/records/binary-new.html',
                 controller: 'BinaryNewController',
                 controllerAs: 'dataCtrl'

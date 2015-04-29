@@ -53,6 +53,19 @@
     left: 0;
 }
 
+.BackgroundNotif {
+    text-align: center;
+
+}
+
+.BackgroundNotifText {
+    font-size: 4rem;
+    font-weight: bold;
+    color:#C3C3C3;
+    text-shadow: 0 1px 0 #FFF;
+    padding-bottom: 3rem;
+}
+
 .ToolbarContainer {
     z-index: 999;
     position: fixed;
@@ -98,7 +111,7 @@ input[type="password"],
 
 .Btn,
 input[type="button"] {
-    padding: .5rem;
+    padding: .5rem 1rem;
     font-size: 1.7rem;
     font-weight: bold;
     border: 0 none;
@@ -109,7 +122,7 @@ input[type="button"] {
 .Btn:hover,
 .Btn:active,
 .Btn:focus {
-    background: #fb3f14;
+    background: #EF2D00;
 }
 
 input[type="text"],

@@ -1,13 +1,22 @@
-<div class="grid-3">
+<div class="BackgroundNotif" ng-hide="indexCtrl.tracks">
+    <div class="BackgroundNotifText">
+        <br/>
+        No tracks here... yet :)
+        <br/>
+    </div>
+    <a href="#/tracks/new" class="Btn">Start quantifying your life !</a>
+</div>
+
+<div class="grid-3" ng-show="indexCtrl.tracks">
     <article class="Card" ng-repeat="track in indexCtrl.tracks">
         <h3 class="CardTitle">
-            <a href="#/track/{{track.id}}">{{track.title}}</a>
+            <a href="#/track/{{track.type}}/{{track.id}}">{{track.title}}</a>
         </h3>
         <!--<time {{bind-attr datetime='track.creationDate'}}>{{track.creationDate}}</time>-->
 
         <canvas id='graph{{track.id}}' class="chart chart-line"></canvas>
 
-        <a href="#/track/{{track.id}}/new/{{track.type}}" class='Btn CardAddValue'>Add</a>
+        <a href="#/track/{{track.type}}/{{track.id}}/new" class='Btn CardAddValue'>Add</a>
     </article>
 </div>
 

@@ -1,5 +1,0 @@
-qf_api:
-    resource: "@QFPlatformBundle/Controller/"
-    type:     annotation
-    prefix:   /api
-

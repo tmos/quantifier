@@ -9,7 +9,6 @@ pubspec.lock
 /dist/
 .buildlog
 node_modules
-bower_components
 
 # Or broccoli working directory
 tmp
